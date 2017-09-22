@@ -1,0 +1,71 @@
+/*
+================FOOTER==================
+*/
+
+#pre-footer {
+  background: @about-background;
+  width: 100%;
+  padding-bottom: 13px;
+
+  h2{
+    color: @text-color-on-dark;
+  }
+
+  a{
+    color: @link-on-dark;
+  }
+
+  .contact-email {
+    text-align: center;
+    a {
+      .icon-link('\f0e0', 3px, 10px);
+      &:before{
+        font-size: 29px;
+      }
+      padding: 9px 12px 9px 50px;
+    }
+  }
+
+  .contact-twitter {
+    text-align: center;
+    a {
+      .icon-link('\f099', 3px, 10px);
+      &:before{
+        font-size: 29px;
+      }
+
+      padding: 9px 12px 9px 50px;
+    }
+  }
+}
+
+.row {
+  margin: 0;
+  padding: 0;
+}
+
+.one-row {
+  padding: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.one-row a {
+  .link-with-hover(@text-color-on-dark, @link-hover-color)
+}
+
+.contact-cell {
+  padding-left: 15px;
+}
+
+#rights-and-credits {
+  text-align: center;
+  width: 100%;
+  background: @credits-background;
+  color: @credits-text-color;
+  vertical-align: center;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

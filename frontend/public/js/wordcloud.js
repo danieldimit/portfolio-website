@@ -1,0 +1,346 @@
+var wordSize = 18;
+var minHeight = 0;
+var initialArea = 0;
+var words = [];
+
+$(document).ready(function () {
+
+    //$.get('static-api-req/wordcloud.json', function (res) {
+    //$.get('https://api.fakenewsgraph.de/api/word-stats-without-tweet-ids.json', function(res) {
+     //   console.log(res);
+      //  generateCloud(res);
+    //});
+
+    $.get('static-api-req/wordcloud.json', function (res) {
+        words = generateSizes(res);
+        generateCloudNew(words);
+        minHeight = $( "#wordcloud" ).height();
+        initialArea = $( "#wordcloud" ).width() * $( "#wordcloud" ).height();
+    });
+
+    // ID of the Google Spreadsheet
+    //var spreadsheetID = "134BBsj9gFKYv8strppLG1_Ttox1v_FGLNO0NsRdXJ6Q";
+    //var sheet = "HashtagsData";
+//  var sheet2 = "Politiker";
+   // var url = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id="
+     //   + spreadsheetID + "&sheet=" + sheet;
+
+    // Get the json file of the google sheet
+    /*$.getJSON("static-api-req/echo.json", function(data) {
+
+            pick100RandomHashtags(data['HashtagsData']);
+
+
+    });*/
+});
+
+// Recalculate the cloud when resized
+$( window ).resize(function() {
+    if ($( window ).width() < $("#wordcloud").width()) {
+        $("#wordcloud").empty();
+        $( "#wordcloud" ).width($( window ).width());
+        newHeight = initialArea / $( window ).width();
+        $( "#wordcloud" ).height(newHeight);
+        generateCloudNew(words);
+        console.log($( window ).width());
+    } else if ($( window ).width() - 200 > $("#wordcloud").width()
+        && initialArea / $( window ).width() > minHeight ) {
+        $("#wordcloud").empty();
+        $( "#wordcloud" ).width($( window ).width());
+        newHeight = initialArea / $( window ).width();
+        $( "#wordcloud" ).height(newHeight);
+        generateCloudNew(words);
+    }
+
+});
+
+
+function generateSizes(hashtags) {
+    // Prepare the word cloud JSON file [{text: ...., size: ...}, .....]
+
+
+
+    var entries = [];
+    var i = 0;
+    while (i < hashtags.length) {
+
+        let extraSize =0
+        switch (hashtags[i]['text']){
+            case "angelamerkel":
+                extraSize =+ 20
+            case "martinschulz":
+                extraSize =+ 20
+                break;
+            case "afd":
+                extraSize =+ 20;
+                break;
+            case "merkel":
+                extraSize =+ 20;
+                break;
+            case "sanders":
+                extraSize =+ 20;
+                break;
+            default:
+                extraSize =0;
+                break;
+        }
+
+        entries[entries.length] = {text: hashtags[i]['text'],
+            size: wordSize + (Math.random() * 30) + extraSize
+        };
+        i++;
+    }
+    return entries;
+}
+
+
+
+
+function generateCloudNew(res) {
+
+
+
+    if (res) {
+        var svg = d3.select("svg");
+
+        var positionInfo = document.getElementById('wordcloud').getBoundingClientRect();
+        var height = positionInfo.height;
+        var width = positionInfo.width;
+
+        d3.layout.cloud().size([width, height])
+
+            .words(res)
+            .padding(3)
+            .rotate(function() { return 0; })
+            .font("Oswald")
+            .fontSize(function(d) { return d.size; })
+            .on("end", draw)
+            .start();
+
+        function draw(words) {
+            var reddark = "#c51111";
+            var bluedark = "#21384e";
+            var bluelight = "#1256e1";
+
+            d3.select("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .selectAll("text")
+                .data(words)
+                .enter().append("text")
+                .style("font-size", function(d) { return d.size + "px"; })
+                .style("font-family", "Oswald")
+                .style("fill", function(d, i) {
+                    x = Math.random();
+                    if (x < 0.33) {
+                        return bluedark;
+                    } else if (x < 0.66) {
+                        return reddark;
+                    } else {
+                        return bluelight;
+                    }
+                })
+                .attr("text-anchor", "middle")
+                .attr("transform", function(d) {
+                    return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                })
+                .text(function(d) { return d.text; })
+                .on("click", function(d) {
+                    // Because this wordcloud generating script is executed in the client, this script has no
+                    // access to the React router. That is why a hidden input field is incorporated in the HTML.
+                    // This method changes the value of the input field and triggers a click event. The input
+                    // field is generated by React and has an onClick listener on it. So when the onClick is
+                    // triggered React does the routing.
+                    // Note:I tried with onChange(React) event, but for some reason couldn't fire it with javascript
+                    val = d.text.toString();
+
+                    $("#hidden-search-field").val(val.toLocaleLowerCase());
+                    var event = document.createEvent("HTMLEvents");
+                    event.initEvent("click", true, false);
+                    var target = $('#hidden-search-field')[0];
+                    target.dispatchEvent(event);
+                });
+        }
+
+        // Center the box vertically and horizontally in the viewport
+        var gbox = document.getElementsByTagName("g")[0].getBoundingClientRect();
+
+        $("#wordcloud").height(gbox.height);
+        $("#wordcloud").width(gbox.width);
+
+        var offset_left = (- $("g").position().left) + $("#wordcloud").position().left;
+        var offset_top = (- $("g").position().top) + $("#wordcloud").position().top;
+        d3.select("g").attr('transform', 'translate(' + offset_left + ' ' +
+            offset_top + ')');
+
+
+        //remove loading spinner
+        $('.loading').hide();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+ function pick100RandomHashtags(hashtags) {
+ var cloudSize = 60 ;
+
+ if (hashtags.length < cloudSize) {
+ return hashtags;
+ } else {
+ // Generate 100 unique numbers between 0 and the lenght of the array
+ var indexArr = []
+ while(indexArr.length < cloudSize){
+ var randomnumber = Math.ceil(Math.random()*hashtags.length)
+ if(indexArr.indexOf(randomnumber) > -1) continue;
+ indexArr[indexArr.length] = randomnumber;
+ }
+
+ // Prepare the word cloud JSON file [{text: ...., size: ...}, .....]
+ var entries = [];
+ var i = 0;
+ while (i < cloudSize) {
+ entries[entries.length] = {text: hashtags[i]['Hashtag'],
+ size: wordSize + Math.random() * 30};
+ i++;
+ }
+ generateCloudNew(entries);
+ }
+ }
+
+ */
+
+
+
+
+
+
+
+///////////////// OLD PART WITH VARING SIZES ////////////////////
+/*
+function normalize(data) {
+    var maxVal = data[0].count;
+    var minVal = data[0].count;
+
+    var minSize = 25;
+    var maxSize = 140;
+
+    // Get min and max count values
+    for (var i = 1; i < data.length; i++) {
+        if (data[i].count > maxVal) {
+            maxVal = data[i].count;
+        }
+
+        if (data[i].count < minVal) {
+            minVal = data[i].count;
+        }
+    }
+
+    // Normalize
+    for (var i = 0; i < data.length; i++) {
+        var weight = data[i].count / maxVal;
+        data[i].count = minSize + weight * maxSize;
+    }
+}
+
+function generateCloud(res) {
+    normalize(res);
+
+    if (res) {
+        var svg = d3.select("svg");
+
+        var positionInfo = document.getElementById("wordcloud").getBoundingClientRect();
+
+        var height = positionInfo.height;
+        var width = positionInfo.width;
+
+
+        d3.layout.cloud().size([width, height])
+            .words(res)
+            .rotate(function() { return 0; })
+            .font("Oswald")
+            //.fontSize(function(d) { return d.size; })
+            .fontSize(function(d) { return d.count; })
+            .on("end", draw)
+            .start();
+
+        function draw(words) {
+            var reddark = "#c51111";
+            var bluedark = "#21384e";
+            var bluelight = "#1256e1";
+
+            d3.select("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .selectAll("text")
+                .data(words)
+                .enter().append("text")
+                //.style("font-size", function(d) { return d.size + "px"; })
+                .style("font-size", function(d) { return d.count + "px"; })
+                .style("fill", function(d, i) {
+                    x = Math.random();
+                    if (x < 0.33) {
+                        return bluedark;
+                    } else if (x < 0.66) {
+                        return reddark;
+                    } else {
+                        return bluelight;
+                    }
+                })
+                .attr("text-anchor", "middle")
+                .attr("transform", function(d) {
+                    return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                })
+                //.text(function(d) { return d.text; })
+                .text(function(d) { return d.word; })
+                .on("click", function(d) {
+                    //window.location.href = "/results?tag=" + d.word;
+
+                    // Because this wordcloud generating script is exectuted in the client, this script has no
+                    // access to the React router. That is why a hidden input field is incorporated in the HTML.
+                    // This method changes the value of the input field and triggers a click event. The input
+                    // field is generated by React and has an onClick listener on it. So when the onClick is
+                    // triggered React does the routing.
+                    // Note:I tried with onChange(React) event, but for some reason couldn't fire it with javascript
+                    $("#hidden-search-field").val(d.word);
+                    var event = document.createEvent("HTMLEvents");
+                    event.initEvent("click", true, false);
+                    var target = $('#hidden-search-field')[0];
+                    target.dispatchEvent(event);
+                });
+        }
+    }
+
+    // Center the box vertically and horizontally in the viewport
+    var gbox = document.getElementsByTagName("g")[0].getBoundingClientRect();
+
+    $("#wordcloud").height(gbox.height);
+    $("#wordcloud").width(gbox.width);
+
+    var offset_left = (- $("g").position().left) + $("#wordcloud").position().left;
+    var offset_top = (- $("g").position().top) + $("#wordcloud").position().top;
+    d3.select("g").attr('transform', 'translate(' + offset_left + ' ' +
+        offset_top + ')');
+}
+*/

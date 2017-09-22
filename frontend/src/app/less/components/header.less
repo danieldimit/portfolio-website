@@ -1,0 +1,107 @@
+nav {
+    .container {
+        width: 100%;
+        height: auto;
+
+        #logo-link {
+            //height: 130px;
+            height: 90px;
+            margin: 0;
+        }
+        #navbar-logo {
+            height: 55px;
+        }
+    }
+
+    .navbar-brand {
+        padding: @logo-padding;
+    }
+
+    #burger-btn {
+        border: 2px solid @header-color;
+        border-radius: 5px;
+        vertical-align: center;
+        height: 40px;
+        width: 40px;
+
+        .icon-bar {
+            background: @header-color;
+            height: @burger-menu-bar-size;
+            width: 16px;
+        }
+    }
+
+    #burger-btn:hover {
+        border: 2px solid white;
+        background: none;
+
+        .icon-bar {
+            background: white;
+        }
+    }
+
+    #burger-btn:focus {
+        background: none;
+    }
+
+    #menu-items {
+        text-transform: uppercase;
+    }
+
+    @media (min-width: 768px) {
+        #menu-items {
+            height: 90px;
+            display: table-row;
+
+            li {
+                display: table-cell;
+                margin-bottom: 0;
+                //vertical-align: middle;
+                a {
+                    font-size: @header-link-size;
+                    .link-with-hover(@header-color, white);
+                    //height: 130px;
+                    //vertical-align: middle;
+                    height: 90px;
+                    vertical-align: middle;
+                    display: table-cell;
+                    padding: @navbar-link-padding;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        #menu-items-container {
+            border: none;
+        }
+
+        #menu-items {
+            li {
+                a {
+                    font-size: @header-link-size;
+                    .link-with-hover(@header-color, white);
+                    padding-left: @logo-padding;
+                    padding-right: @logo-padding;
+                }
+            }
+        }
+    }
+
+    /* FIX - fit logo and burger-menu on one row even on smart phones*/
+    @media (max-width: 768px) {
+        .navbar-brand {
+            padding: @logo-padding-fix @logo-padding @logo-padding-fix
+                @logo-padding;
+        }
+
+        #navbar-logo {
+            height: 40px !important;
+        }
+
+        #burger-btn {
+            height: 40px !important;
+            margin: @logo-padding-fix @logo-padding @logo-padding-fix 0;
+        }
+    }
+}
