@@ -1,39 +1,66 @@
+// Remove rounded corners and the border from the bootstrap navbar
+.navbar {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    border: 0;
+    margin: 0;
+    background: @header-background;
+}
+
 nav {
+
     .container {
         width: 100%;
+        display: table;
         height: auto;
 
-        #logo-link {
-            //height: 130px;
-            height: 90px;
-            margin: 0;
+        .navbar-header {
+            float: left;
         }
-        #navbar-logo {
-            height: 55px;
-        }
-    }
 
-    .navbar-brand {
-        padding: @logo-padding;
+        #logo-link {
+            margin: 0;
+            display: table;
+
+            div {
+                display: table-cell;
+                letter-spacing: 3px;
+            }
+
+            #toskov {
+                color: @text-black;
+                font-weight: bold;
+            }
+
+            #architects {
+                color: @text-grey;
+            }
+        }
+
+        .nav-bar-icons {
+            padding: 0 12px;
+            color: @text-black;
+        }
+
     }
 
     #burger-btn {
-        border: 2px solid @header-color;
         border-radius: 5px;
         vertical-align: center;
         height: 40px;
         width: 40px;
 
         .icon-bar {
-            background: @header-color;
+            background: @text-grey;
             height: @burger-menu-bar-size;
             width: 16px;
         }
     }
 
     #burger-btn:hover {
-        border: 2px solid white;
-        background: none;
+        border: 2px solid @text-black;
+        background: @text-black;
 
         .icon-bar {
             background: white;
@@ -44,27 +71,32 @@ nav {
         background: none;
     }
 
+    #menu-items-container {
+    }
+
     #menu-items {
         text-transform: uppercase;
     }
 
     @media (min-width: 768px) {
-        #menu-items {
-            height: 90px;
-            display: table-row;
 
+
+        #nav-bim {
+            border-left-style: solid;
+            border-color: @text-grey;
+        }
+
+        #menu-items-container {
+            display: table-cell !important;
+            vertical-align: middle;
+        }
+
+
+        #menu-items {
             li {
-                display: table-cell;
-                margin-bottom: 0;
-                //vertical-align: middle;
+                margin: 0;
                 a {
-                    font-size: @header-link-size;
-                    .link-with-hover(@header-color, white);
-                    //height: 130px;
-                    //vertical-align: middle;
-                    height: 90px;
-                    vertical-align: middle;
-                    display: table-cell;
+                    .link-with-hover(@text-grey, @text-black);
                     padding: @navbar-link-padding;
                 }
             }
@@ -76,32 +108,15 @@ nav {
             border: none;
         }
 
+
         #menu-items {
             li {
                 a {
-                    font-size: @header-link-size;
-                    .link-with-hover(@header-color, white);
-                    padding-left: @logo-padding;
-                    padding-right: @logo-padding;
+                    .link-with-hover(@text-grey, @text-black);
+                    padding-left: @menu-items-padding;
+                    padding-right: @menu-items-padding;
                 }
             }
-        }
-    }
-
-    /* FIX - fit logo and burger-menu on one row even on smart phones*/
-    @media (max-width: 768px) {
-        .navbar-brand {
-            padding: @logo-padding-fix @logo-padding @logo-padding-fix
-                @logo-padding;
-        }
-
-        #navbar-logo {
-            height: 40px !important;
-        }
-
-        #burger-btn {
-            height: 40px !important;
-            margin: @logo-padding-fix @logo-padding @logo-padding-fix 0;
         }
     }
 }

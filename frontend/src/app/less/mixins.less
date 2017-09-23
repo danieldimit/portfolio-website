@@ -4,14 +4,6 @@
   padding: 11px 0 0 46px;
   display: inline-block;
 
-  &:before {
-    position: absolute;
-    font-family: FontAwesome;
-    content: @content;
-    top: @top;
-    left: @left;
-    font-size: @icon-link-font-size;
-  }
 }
 
 .link-with-hover(@color; @hover-color){
@@ -21,7 +13,21 @@
   &:hover,
   &:focus {
     color: @hover-color;
-    text-decoration: @link-hover-decoration;
+    font-weight: bold;
+  }
+
+  &:focus {
+    .tab-focus();
+  }
+}
+
+.link-with-hover-header(@color; @hover-color){
+  color: @color;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: @hover-color;
   }
 
   &:focus {

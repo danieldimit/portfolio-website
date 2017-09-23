@@ -10,7 +10,7 @@ class AboutView extends Component {
         return (
             <div>
                 <Helmet>
-                    <title>About FakeNewsGraph</title>
+                    <title>About - Toskov Architects</title>
                     <meta property="og:url"
                           content="https://fakenewsgraph.de/about" />
                     <meta property="og:type"

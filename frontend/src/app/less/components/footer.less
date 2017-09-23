@@ -2,40 +2,39 @@
 ================FOOTER==================
 */
 
+footer {
+  background: @footer-background;
+
+  .container {
+    padding: 0px;
+  }
+}
+
 #pre-footer {
-  background: @about-background;
+  color: @text-grey;
   width: 100%;
-  padding-bottom: 13px;
 
-  h2{
-    color: @text-color-on-dark;
-  }
+  #footer-header {
+    margin: 0;
+    display: table;
 
-  a{
-    color: @link-on-dark;
-  }
+    div {
+      display: table-cell;
+      letter-spacing: 3px;
+    }
 
-  .contact-email {
-    text-align: center;
-    a {
-      .icon-link('\f0e0', 3px, 10px);
-      &:before{
-        font-size: 29px;
-      }
-      padding: 9px 12px 9px 50px;
+    #toskov {
+      color: @text-black;
+      font-weight: bold;
+    }
+
+    #architects {
+      color: @text-grey;
     }
   }
 
-  .contact-twitter {
-    text-align: center;
-    a {
-      .icon-link('\f099', 3px, 10px);
-      &:before{
-        font-size: 29px;
-      }
-
-      padding: 9px 12px 9px 50px;
-    }
+  #footer-contact {
+    text-align: right;
   }
 }
 
@@ -44,28 +43,9 @@
   padding: 0;
 }
 
-.one-row {
-  padding: 0;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.one-row a {
-  .link-with-hover(@text-color-on-dark, @link-hover-color)
-}
-
-.contact-cell {
-  padding-left: 15px;
-}
-
 #rights-and-credits {
-  text-align: center;
-  width: 100%;
-  background: @credits-background;
-  color: @credits-text-color;
-  vertical-align: center;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: @text-grey;
+  font-style: italic;
+  font-size: 75%;
+  padding: @top-bottom-padding-footer 0 @top-bottom-padding-footer 0;
 }

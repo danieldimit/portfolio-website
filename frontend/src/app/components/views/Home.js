@@ -14,13 +14,13 @@ class Home extends Component {
         return (
             <div>
                 <Helmet>
-                    <title>Analysis FakeNewsGraph</title>
+                    <title>Toskov Architects</title>
                     <meta property="og:url"
                           content="https://fakenewsgraph.de" />
                     <meta property="og:type"
                           content="article" />
                     <meta property="og:title"
-                          content="FakeNewsGraph" />
+                          content="Toskov Architects" />
                     <meta property="og:description"
                           content="A tool for visualization and analysis of the diffusion of Tweets.
                           This tool can give you vital and informative insights about the retweeters of a certain Tweet." />

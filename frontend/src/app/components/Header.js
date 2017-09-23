@@ -5,13 +5,14 @@ import { Link, browserHistory } from 'react-router';
 import styled from 'styled-components';
 
 class Header extends Component {
+
     render() {
         return (
-            <Navbar inverse collapseOnSelect>
+            <Navbar inverse collapseOnSelect id="whole-navbar">
                 <Navbar.Header>
                     <Navbar.Brand>
                         <Link to="/" href="/" id="logo-link">
-                            <img id="navbar-logo" src="img/logo.png" />
+                            <div id="toskov">TOSKOV</div> &nbsp; <div id="architects"> ARCHITECTS</div>
                         </Link>
                     </Navbar.Brand>
                     <Navbar.Toggle id="burger-btn" />
@@ -22,12 +23,12 @@ class Header extends Component {
                         <NavItem
                             key={1}
                             onClick={() => browserHistory.push('/whats-this')}>
-                            What's this?
+                            About
                         </NavItem>
                         <NavItem
                             key={2}
                             onClick={() => browserHistory.push('/about')}>
-                            About Us
+                            Projects
                         </NavItem>
                         <NavItem
                             key={3}
@@ -35,10 +36,24 @@ class Header extends Component {
                             Contact
                         </NavItem>
                         <NavItem
+                            id="nav-bim"
                             key={4}
                             onClick={() => browserHistory.push('/impressum')}>
-                            Imprint
+                            BIM
                         </NavItem>
+                        <a className="nav-bar-icons"
+                            href="mailto:kontakt@fakenewsgraph.de">
+                            <i className="fa fa-linkedin-square fa-lg" aria-hidden="true"/>
+                        </a>
+                        <a className=" nav-bar-icons"
+                            href="mailto:kontakt@fakenewsgraph.de">
+                            <i className="fa fa-twitter-square fa-lg" aria-hidden="true"/>
+                        </a>
+                        <a className=" nav-bar-icons"
+                            href="mailto:kontakt@fakenewsgraph.de">
+                            <i className="fa fa-facebook-square fa-lg" aria-hidden="true"/>
+                        </a>
+
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

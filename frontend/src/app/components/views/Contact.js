@@ -12,7 +12,7 @@ class Contact extends Component {
         return (
             <div>
                 <Helmet>
-                    <title>Contact FakeNewsGraph</title>
+                    <title>Contact - Toskov Architects</title>
                     <meta property="og:url"
                           content="https://fakenewsgraph.de/contact" />
                     <meta property="og:type"

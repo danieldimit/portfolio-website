@@ -4,7 +4,7 @@ This is the frontend of the fakenewsgraph.de webservice.
 
 ## Installing / Getting started
 
-- run `git clone https://github.com/gniewus/FakeNewsNetworkAnalyser.git`
+- run `git clone https://github.com/danieldimit/website-alex.git`
 - run `cd frontend`
 - run `npm i` or `yarn install`
 - run `npm start`
