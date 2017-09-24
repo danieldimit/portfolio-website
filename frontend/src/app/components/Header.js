@@ -23,12 +23,12 @@ class Header extends Component {
                         <Nav pullRight id="menu-items">
                             <NavItem
                                 key={1}
-                                onClick={() => browserHistory.push('/whats-this')}>
+                                onClick={() => browserHistory.push('/about')}>
                                 About
                             </NavItem>
                             <NavItem
                                 key={2}
-                                onClick={() => browserHistory.push('/about')}>
+                                onClick={() => browserHistory.push('/projects')}>
                                 Projects
                             </NavItem>
                             <NavItem
@@ -39,19 +39,22 @@ class Header extends Component {
                             <NavItem
                                 id="nav-bim"
                                 key={4}
-                                onClick={() => browserHistory.push('/impressum')}>
+                                onClick={() => browserHistory.push('/bim')}>
                                 BIM
                             </NavItem>
                             <a className="nav-bar-icons"
-                               href="mailto:kontakt@fakenewsgraph.de">
+                               href="https://www.linkedin.com/in/aleksandartoskov/"
+                               target="_blank">
                                 <i className="fa fa-linkedin-square fa-lg" aria-hidden="true"/>
                             </a>
                             <a className=" nav-bar-icons"
-                               href="mailto:kontakt@fakenewsgraph.de">
+                               href="https://twitter.com/"
+                               target="_blank">
                                 <i className="fa fa-twitter-square fa-lg" aria-hidden="true"/>
                             </a>
                             <a className=" nav-bar-icons"
-                               href="mailto:kontakt@fakenewsgraph.de">
+                               href="https://www.facebook.com/"
+                               target="_blank">
                                 <i className="fa fa-facebook-square fa-lg" aria-hidden="true"/>
                             </a>
 

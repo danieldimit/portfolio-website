@@ -36,7 +36,9 @@ class Footer extends Component {
                                     className="col-lg-3 col-md-3 col-sm-3 col-xs-12 top-pad">
                                     <div id="footer-contact" className="pull-right">
                                         <b>Toskov</b> Architects<br/>
-                                        info@toskovarchitect.com<br/>
+                                        <a  href="mailto:info@toskovarchitects.com">
+                                            info@toskovarchitects.com
+                                        </a><br/>
                                         +44 (0) 742 470 8225
                                     </div>
                                 </div>

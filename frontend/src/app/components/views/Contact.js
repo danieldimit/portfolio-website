@@ -5,6 +5,7 @@ import {Helmet} from "react-helmet";
 import Header from '../Header';
 import Footer from '../Footer';
 
+
 import { compose, withProps } from "recompose";
 import {
     withScriptjs,
@@ -15,7 +16,7 @@ import mapStyle from "../../../../public/res/mapStyle.json";
 
 const StyledMapWithAnInfoBox = compose(
     withProps({
-        googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
+        googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDd3nVf8mY97Bl1zk9lx6j5kHZDosCxgVA&v=3.exp&libraries=geometry,drawing,places",
         loadingElement: <div style={{ height: `100%` }} />,
         containerElement: <div style={{ height: `400px` }} />,
         mapElement: <div style={{ height: `100%` }} />,
@@ -31,6 +32,7 @@ const StyledMapWithAnInfoBox = compose(
     >
     </GoogleMap>
 );
+
 
 class Contact extends Component {
 
@@ -76,7 +78,9 @@ class Contact extends Component {
 
                         <div>
                             <b>Toskov</b> Architects<br/>
-                            info@toskovarchitects.com<br/>
+                            <a  href="mailto:info@toskovarchitects.com">
+                                info@toskovarchitects.com
+                            </a><br/>
                             +44 (0) 742 470 8225
 
                         </div>
@@ -89,40 +93,4 @@ class Contact extends Component {
     }
 }
 
-/**
- * <div className="contact-section">
- <div className="container">
- <form>
- <div className="col-md-6 col-sm-12">
- <div className="form-group">
- <label htmlFor="exampleInputEmail">Email Adresse</label>
- <input type="email" className="form-control" id="exampleInputEmail"
- placeholder=" Gib deine Email-Adresse ein"/>
- </div>
- <div className="form-group">
- <label htmlFor="exampleInputUsername">Deiner Name (optional)</label>
- <input type="text" className="form-control" id="" placeholder=" Gib deinen Name ein"/>
- </div>
- <div className="form-group">
- <label htmlFor="telephone">Telefon Nummer (optional)</label>
- <input type="tel" className="form-control" id="telephone" placeholder=" Gib dein Telefonnummer ein"/>
- </div>
- </div>
- <div className="col-md-6 col-sm-12 form-line">
- <div className="form-group">
- <label htmlFor ="description"> Nachricht</label>
- <textarea  className="form-control" id="description" placeholder="Gib deine Nachricht ein"></textarea>
- </div>
- <div>
-
- <button type="button" className="btn btn-default submit">
- <i className="fa fa-paper-plane" aria-hidden="true"></i>  Schicken
- </button>
- </div>
-
- </div>
- </form>
- </div>
- </div>
- */
 export default Contact;
