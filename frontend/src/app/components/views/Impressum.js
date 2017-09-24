@@ -12,13 +12,13 @@ class Impressum extends Component {
         return (
             <div>
                 <Helmet>
-                    <title>Impressum FakeNewsGraph</title>
+                    <title>BIM - Toskov Architects</title>
                     <meta property="og:url"
                           content="https://fakenewsgraph.de/impressum" />
                     <meta property="og:type"
                           content="article" />
                     <meta property="og:title"
-                          content="Impressum of the FakeNewsGraph" />
+                          content="BIM - Toskov Architects" />
                     <meta property="og:description"
                           content="Statement of the ownership and authorship of the Fake News Graph website." />
                     <meta property="og:image"

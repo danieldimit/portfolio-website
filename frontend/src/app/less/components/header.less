@@ -1,11 +1,21 @@
+#place-holder-4-header {
+    height: 54px;
+    width: 100%;
+}
+
 // Remove rounded corners and the border from the bootstrap navbar
 .navbar {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
-    border: 0;
+    border-bottom: solid;
+    border-color: @header-underline-color;
+    border-width: 1px;
     margin: 0;
     background: @header-background;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
 }
 
 nav {
@@ -39,7 +49,7 @@ nav {
         }
 
         .nav-bar-icons {
-            padding: 0 12px;
+            padding: @header-padding-logos;
             color: @text-black;
         }
 
@@ -84,6 +94,7 @@ nav {
         #nav-bim {
             border-left-style: solid;
             border-color: @text-grey;
+            border-width: 1px;
         }
 
         #menu-items-container {

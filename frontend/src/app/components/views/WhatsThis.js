@@ -10,13 +10,13 @@ class WhatsThisView extends Component {
         return (
             <div>
                 <Helmet>
-                    <title>Analysis FakeNewsGraph</title>
+                    <title>About - Toskov Architects</title>
                     <meta
                         property="og:url"
                         content="https://fakenewsgraph.de"
                     />
                     <meta property="og:type" content="article" />
-                    <meta property="og:title" content="FakeNewsGraph" />
+                    <meta property="og:title" content="About - Toskov Architects" />
                     <meta
                         property="og:description"
                         content="A tool for visualization and analysis of the diffusion of Tweets.

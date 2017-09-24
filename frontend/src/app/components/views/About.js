@@ -10,13 +10,13 @@ class AboutView extends Component {
         return (
             <div>
                 <Helmet>
-                    <title>About - Toskov Architects</title>
+                    <title>Projects - Toskov Architects</title>
                     <meta property="og:url"
                           content="https://fakenewsgraph.de/about" />
                     <meta property="og:type"
                           content="article" />
                     <meta property="og:title"
-                          content="About the FakeNewsGraph" />
+                          content="Projects - Toskov Architects" />
                     <meta property="og:description"
                           content="A tool for visualization and analysis of the diffusion of Tweets.
                           This tool can give you vital and informative insights about the retweeters of a certain Tweet.
