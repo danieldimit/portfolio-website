@@ -1,0 +1,104 @@
+.legend {
+  h1 {
+    font-weight: bold;
+    font-size: @font-headers-content !important;
+  }
+
+  div {
+    font-size: @font-content !important;
+  }
+}
+
+#home-content {
+  text-align: center;
+
+  .grid-margin {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  img {
+    width: 100%;
+  }
+
+
+
+  button {
+    background-color: white; /* Green */
+    border: 1px solid @text-grey;
+    color: @text-grey;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+
+    -webkit-transition: color 0.35s ease-in-out;
+    -moz-transition: color 0.35s ease-in-out;
+    -ms-transition: color 0.35s ease-in-out;
+    -o-transition: color 0.35s ease-in-out;
+    transition: color 0.35s ease-in-out;
+
+    &:hover {
+      color: @text-black;
+      border-color: @text-black;
+    }
+  }
+
+
+
+  #references {
+    width: 100%;
+    background: @footer-background;
+
+    .ref-cols {
+      text-align: left;
+
+      .ref-padding {
+        padding: @refs-padding;
+      }
+
+      #ref-1 {
+        background: @1st-ref-col;
+      }
+
+      #ref-2 {
+        background: @2nd-ref-col;
+      }
+
+      #ref-3 {
+        background: @3rd-ref-col;
+      }
+
+      ul {
+        padding-left: 18px;
+      }
+    }
+  }
+
+  #tutor-text {
+    text-align: left;
+    display: table;
+    height: 100%;
+
+    .table-row {
+      display: table-row;
+
+      .table-cell {
+        display: table-cell;
+        padding-bottom: 15px;
+      }
+    }
+
+    .valign-bottom {
+      vertical-align: bottom;
+      padding-bottom: 0px !important;
+    }
+
+    #tutor-text-quote {
+      font-size: 80%;
+    }
+
+    #tutor-text-place {
+      font-size: 70%;
+    }
+  }
+}

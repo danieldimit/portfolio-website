@@ -12,6 +12,8 @@ class About extends Component {
                     residential, commercial and mixed-used buildings. Our design is distinguished with creativity,
                     smart solutions and high efficiency...
                 </div>
+                <br/>
+                <br/>
 
                 <h1>Founder & CEO</h1>
                 <hr />
@@ -21,6 +23,8 @@ class About extends Component {
                     many job positions and stages in the design. His development and experience has built him
                     up as a young architect with broad professional knowledge.
                 </div>
+                <br/>
+                <br/>
                 <div className="row">
                     <div
                         className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -31,52 +35,56 @@ class About extends Component {
                     </div>
                     <div
                         className="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                        <table>
-                            <tr>
-                                <td className="cv-left-column cv-bold">Jun 2017</td>
-                                <td><div className="cv-bold">Architect, ARB</div>
-                                    Architects Registration Board, London
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="cv-left-column cv-bold">Jun 2017</td>
-                                <td><div className="cv-bold">Chartered Architect, RIBA </div>
-                                    Royal Institute of British Architects, London
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="cv-left-column cv-bold">May 2017</td>
-                                <td><div className="cv-bold">Architect, CAB Full Legal Design Capacity </div>
-                                    Chamber of Architects in Bulgaria, Sofia
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="cv-left-column cv-bold">Feb 2014</td>
-                                <td><div className="cv-bold">Master of Architecture</div>
-                                    University of Architecture, Civil Engineering and Geodesy, Sofia
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="cv-left-column cv-bold">Sep 2008</td>
-                                <td><div className="cv-bold">Construction Technician</div>
-                                    Sofia High School of Civic Engineering, Architecture and Geodesy
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="cv-left-column cv-bold">Sep 2007</td>
-                                <td><div className="cv-bold">Constructor of Interior and Exterior Design </div>
-                                    Sofia High School of Civic Engineering, Architecture and Geodesy
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="cv-left-column cv-bold">Jun 2007</td>
-                                <td><div className="cv-bold">Insulation and Waterproofing in Construction </div>
-                                    Bulgarian Association for Construction Insulation and Waterproofing
-                                </td>
-                            </tr>
+                        <table id="cv-table">
+                            <tbody>
+                                <tr>
+                                    <td className="cv-left-column cv-bold">Jun 2017</td>
+                                    <td><div className="cv-bold">Architect, ARB</div>
+                                        Architects Registration Board, London
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="cv-left-column cv-bold">Jun 2017</td>
+                                    <td><div className="cv-bold">Chartered Architect, RIBA </div>
+                                        Royal Institute of British Architects, London
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="cv-left-column cv-bold">May 2017</td>
+                                    <td><div className="cv-bold">Architect, CAB Full Legal Design Capacity </div>
+                                        Chamber of Architects in Bulgaria, Sofia
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="cv-left-column cv-bold">Feb 2014</td>
+                                    <td><div className="cv-bold">Master of Architecture</div>
+                                        University of Architecture, Civil Engineering and Geodesy, Sofia
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="cv-left-column cv-bold">Sep 2008</td>
+                                    <td><div className="cv-bold">Construction Technician</div>
+                                        Sofia High School of Civic Engineering, Architecture and Geodesy
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="cv-left-column cv-bold">Sep 2007</td>
+                                    <td><div className="cv-bold">Constructor of Interior and Exterior Design </div>
+                                        Sofia High School of Civic Engineering, Architecture and Geodesy
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="cv-left-column cv-bold">Jun 2007</td>
+                                    <td><div className="cv-bold">Insulation and Waterproofing in Construction </div>
+                                        Bulgarian Association for Construction Insulation and Waterproofing
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
+                <br/>
+                <br/>
 
                 <h1>Career</h1>
                 <hr />

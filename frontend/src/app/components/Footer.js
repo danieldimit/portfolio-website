@@ -45,9 +45,9 @@ class Footer extends Component {
                                 <div
                                     className="col-lg-12 col-md-12 col-sm-12 col-xs-12 top-pad">
                                     <div id="footer-contact" className="pull-right">
-                                        <img src="img/simple-logo.png"/>
-                                        <img src="img/simple-logo.png"/>
-                                        <img src="img/simple-logo.png"/>
+                                        <img src="img/logos/riba-logo-2l.png"/>
+                                        <img src="img/logos/arb-logo-bl.png"/>
+                                        <img src="img/logos/cab-logo-l.png"/>
                                     </div>
                                 </div>
                             </div>

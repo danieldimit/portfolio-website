@@ -5,27 +5,92 @@
 
 body {
   font-family: 'SEGOEUIL' !important;
+  color: @text-color-content;
+}
+
+a {
+  text-decoration: none;
+  color: @text-grey;
+}
+
+.text-cap {
+  text-transform: uppercase;
+}
+
+.text-normal {
+  text-transform: none !important;
 }
 
 // Impressum , Contact and About container
 .container-content-page {
   max-width: 1200px;
-  padding: @search-field-margin;
+  padding: @container-padding;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: @margin-from-footer;
-  font-size: 130%;
+  font-size: @font-content;
 
   h1 {
     margin: 0 0 10px 0;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 200%;
+    font-size: @font-headers-content;
   }
 }
 
-
-
 .container-fluid {
   padding: 0;
+}
+
+// Projects
+.grid-projects {
+  color: white;
+}
+.project-container {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+  }
+}
+.thumbnail-header {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: @text-grey;
+  opacity: 0.5;
+
+  -webkit-transition: opacity 0.35s ease-in-out;
+  -moz-transition: opacity 0.35s ease-in-out;
+  -ms-transition: opacity 0.35s ease-in-out;
+  -o-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+
+  &:hover {
+    opacity: 1.0;
+  }
+
+  .thumbnail-subcontainer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+
+
+
+    .thumbnail-type {
+      font-size: 50%;
+    }
+    .thumnail-title {
+      font-size: 160%;
+    }
+  }
 }

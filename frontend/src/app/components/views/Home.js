@@ -3,12 +3,10 @@ import {Helmet} from "react-helmet";
 
 import Header from '../Header';
 import Breadcrumb from '../../container/Breadcrumb';
-import SearchField from '../../container/SearchField';
-import Wordcloud from '../../container/Wordcloud';
-import Results from '../../container/Results';
+import Home from '../../container/Home';
 import Footer from '../Footer';
 
-class Home extends Component {
+class HomeView extends Component {
     render() {
 
         return (
@@ -36,11 +34,11 @@ class Home extends Component {
 
                 </Helmet>
                 <Header />
-                <Results />
+                <Home />
                 <Footer />
             </div>
         );
     }
 }
 
-export default Home;
+export default HomeView;

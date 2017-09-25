@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 
 import Header from '../Header';
 import Breadcrumb from '../../container/Breadcrumb';
-import Analysis from '../../container/Analysis';
+import Project from '../../container/Project';
 import Footer from '../Footer';
 
-class AnalysisView extends Component {
+class ProjectView extends Component {
     render() {
         return (
             <div>
                 <Header />
-                <Analysis />
+                <Project />
                 <Footer />
             </div>
         );
     }
 }
 
-export default AnalysisView;
+export default ProjectView;
