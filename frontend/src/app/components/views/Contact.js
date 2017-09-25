@@ -67,23 +67,22 @@ class Contact extends Component {
                         <h1 className="section-header">Contact</h1>
                         <br/>
 
-                        <StyledMapWithAnInfoBox />
-                        <br/>
+                        <StyledMapWithAnInfoBox/>
 
-                        <div>
+                        <p></p>
+                        <p>
                             If you’d like to discuss a project, please get in touch. <br/>
                             We look forward to hearing from you.
-                        </div>
-                        <br/>
+                        </p>
 
-                        <div>
+                        <p>
                             <b>Toskov</b> Architects<br/>
                             <a  href="mailto:info@toskovarchitects.com">
                                 info@toskovarchitects.com
                             </a><br/>
                             +44 (0) 742 470 8225
 
-                        </div>
+                        </p>
                     </div>
 
                 </div>

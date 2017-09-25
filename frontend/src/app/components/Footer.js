@@ -16,7 +16,7 @@ class Footer extends Component {
                 <div id="back-to-top-btn"><span></span>Back to top</div>
                 <footer>
                     <div id="pre-footer">
-                        <div className="container">
+                        <div className="container-footer">
                             <div className="row">
                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 side-pad top-pad">
                                     <h2 id="footer-header"><div id="toskov">TOSKOV</div> &nbsp; <div id="architects"> ARCHITECTS</div></h2>
@@ -54,7 +54,7 @@ class Footer extends Component {
                         </div>
                     </div>
 
-                    <div className="container" id="rights-and-credits">
+                    <div className="container-footer" id="rights-and-credits">
                         <div className="row">
                             <div
                                 className="col-lg-9 col-md-9 col-sm-9 col-xs-12"

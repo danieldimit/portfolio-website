@@ -23,11 +23,15 @@ a {
 
 // Impressum , Contact and About container
 .container-content-page {
-  max-width: 1200px;
+  max-width: 1530px;
   padding: @container-padding;
   margin-left: auto;
   margin-right: auto;
   font-size: @font-content;
+
+  p {
+    margin-bottom: 1.56em;
+  }
 
   h1 {
     margin: 0 0 10px 0;
@@ -37,8 +41,19 @@ a {
   }
 }
 
+.margin-bottom-content {
+  margin-bottom: 1.56em;
+}
+
 .container-fluid {
   padding: 0;
+}
+
+@media (min-width: 750px) {
+  .equal-length-fix {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
 // Projects
@@ -93,4 +108,8 @@ a {
       font-size: 160%;
     }
   }
+}
+.grid-margin {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
