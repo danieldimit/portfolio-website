@@ -3,8 +3,23 @@ import { Helmet } from 'react-helmet';
 import { browserHistory } from 'react-router';
 
 import { Carousel } from 'react-responsive-carousel';// carousel styles
+import Lightbox from 'react-image-lightbox';
+
+const images = [
+    './img/bim/bim1.jpg',
+    './img/bim/bim2.png'
+];
 
 class Home extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            photoIndex: 0,
+            isOpen: false
+        };
+    }
 
     render() {
         let tag = '';
@@ -12,6 +27,11 @@ class Home extends Component {
             let params = new URL(document.location).searchParams;
             tag = params.get('tag');
         }
+
+        const {
+            photoIndex,
+            isOpen,
+        } = this.state;
 
         return (
             <div>
@@ -50,6 +70,8 @@ class Home extends Component {
                         content="https://fakenewsgraph.de/img/meta/chooseTweet.png"
                     />
                 </Helmet>
+
+                <img id="hero-placeholder" src="img/hero-images/hero-placeholder.png" />
 
                 <Carousel
                     showArrows={false}
@@ -90,7 +112,7 @@ class Home extends Component {
 
 
                 <div id="home-content">
-                    <div className="container-content-page">
+                    <div id="home-top-content" className="container-content-page">
                         <h1>Architecture & Design</h1>
                         <hr />
                         <div>
@@ -106,7 +128,7 @@ class Home extends Component {
                     </div>
                     <br/>
 
-                    <div className="container-content-page">
+                    <div className="container-content-page home-page-topbottom-margin">
                         <h1>Relevant Projects</h1>
                         <hr />
                         <div className="row grid-projects">
@@ -216,10 +238,10 @@ class Home extends Component {
                     </div>
 
                     <div id="references">
-                        <div className="container-content-page">
+                        <div className="container-content-page home-page-topbottom-margin">
                             <h1>Professional References</h1>
                             <hr />
-                            <div>
+                            <div className="ref-text">
                                 We work collaboratively to develop creative and considered designs that embrace our
                                 client’s aspirations and unlock value. We aim to continue our track record in providing
                                 high quality services at every stage of the process.
@@ -227,8 +249,10 @@ class Home extends Component {
                             <br/>
                             <div className="row ref-cols">
                                 <div
-                                    className="col-lg-4 col-md-4 col-sm-4 col-xs-12 grid-margin">
-                                    <div className="ref-padding" id="ref-1">
+                                    className="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-margin">
+                                    <div className="ref-padding-color cursor" id="ref-1"
+                                         onClick={() => this.setState({
+                                             photoIndex: 1, isOpen: true })}>
                                         <h6 className="exp-type">
                                             ACADEMIC REFERENCE
                                         </h6>
@@ -253,8 +277,10 @@ class Home extends Component {
                                     </div>
                                 </div>
 
-                                <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 grid-margin">
-                                    <div className="ref-padding" id="ref-2">
+                                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-margin">
+                                    <div className="ref-padding-color cursor" id="ref-2"
+                                         onClick={() => this.setState({
+                                             photoIndex: 1, isOpen: true })}>
                                         <h6 className="exp-type">
                                             PROFESSIONAL REFERENCE
                                         </h6>
@@ -281,8 +307,10 @@ class Home extends Component {
 
                                     </div>
                                 </div>
-                                <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 grid-margin">
-                                    <div className="ref-padding" id="ref-3">
+                                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-margin">
+                                    <div className="ref-padding-color cursor" id="ref-3"
+                                         onClick={() => this.setState({
+                                             photoIndex: 1, isOpen: true })}>
                                         <h6 className="exp-type">
                                             PROFESSIONAL REFERENCE
                                         </h6>
@@ -308,10 +336,27 @@ class Home extends Component {
                                 </div>
                             </div>
                         </div>
+
+                        {isOpen &&
+                        <Lightbox
+                            mainSrc={images[photoIndex]}
+                            nextSrc={images[(photoIndex + 1) % images.length]}
+                            prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+
+                            onCloseRequest={() => this.setState({ isOpen: false })}
+                            onMovePrevRequest={() => this.setState({
+                                photoIndex: (photoIndex + images.length - 1) % images.length,
+                            })}
+                            onMoveNextRequest={() => this.setState({
+                                photoIndex: (photoIndex + 1) % images.length,
+                            })}
+                        />
+                        }
+
                     </div>
                     <br/>
 
-                    <div className="container-content-page">
+                    <div className="container-content-page home-page-topbottom-margin">
                         Took active part in the design of over 16 000 sq.m. of large and complex public building
                         in all design stages with construction permit and more than 7 000 sq.m. of residential
                         and mixed-used buildings

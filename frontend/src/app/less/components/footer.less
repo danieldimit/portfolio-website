@@ -16,6 +16,8 @@
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  position: relative;
+  bottom: -80px;
 
   &:hover {
     color: @text-black;
@@ -39,6 +41,15 @@
     box-sizing: border-box;
   }
 }
+#footer-white-background {
+  height: 200px;
+  background: white;
+  z-index: 1;
+  top: -20px;
+  width: 100%;
+  position: relative;
+  margin-bottom: -20px;
+}
 
 /*
 ================FOOTER==================
@@ -52,6 +63,8 @@
 }
 
 footer {
+  position: relative;
+  z-index: 1;
   background: @footer-background;
   font-size: @pre-footer-font-size;
 

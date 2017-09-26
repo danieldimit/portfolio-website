@@ -13,7 +13,10 @@ class Footer extends Component {
     render() {
         return (
             <div>
-                <div id="back-to-top-btn"><span></span>Back to top</div>
+                <div id="footer-white-background">
+                    <div id="back-to-top-btn"><span></span>Back to top</div>
+                </div>
+
                 <footer>
                     <div id="pre-footer">
                         <div className="container-footer">

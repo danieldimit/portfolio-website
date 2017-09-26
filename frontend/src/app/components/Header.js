@@ -23,22 +23,27 @@ class Header extends Component {
                         <Nav pullRight id="menu-items">
                             <NavItem
                                 key={1}
+                                onClick={() => browserHistory.push('/')}>
+                                Home
+                            </NavItem>
+                            <NavItem
+                                key={2}
                                 onClick={() => browserHistory.push('/about')}>
                                 About
                             </NavItem>
                             <NavItem
-                                key={2}
+                                key={3}
                                 onClick={() => browserHistory.push('/projects')}>
                                 Projects
                             </NavItem>
                             <NavItem
-                                key={3}
+                                key={4}
                                 onClick={() => browserHistory.push('/contact')}>
                                 Contact
                             </NavItem>
                             <NavItem
                                 id="nav-bim"
-                                key={4}
+                                key={5}
                                 onClick={() => browserHistory.push('/bim')}>
                                 BIM
                             </NavItem>

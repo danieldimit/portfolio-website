@@ -1,5 +1,5 @@
 #place-holder-4-header {
-    height: 74px;
+    height: @header-placeholder;
     width: 100%;
 }
 
@@ -16,6 +16,11 @@
     width: 100%;
     position: fixed;
     z-index: 100;
+
+    #menu-items-container {
+        font-size: 75%;
+        letter-spacing: 0.75px;
+    }
 }
 
 nav {
@@ -30,13 +35,13 @@ nav {
         }
 
         #logo-link {
-            margin: 12px 0 12px 0;
+            margin: @padding-header;
             display: table;
             font-size: 95%;
 
             div {
                 display: table-cell;
-                letter-spacing: 3px;
+                letter-spacing: 2.5px;
             }
 
             #toskov {
