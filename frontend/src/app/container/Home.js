@@ -34,7 +34,7 @@ class Home extends Component {
         } = this.state;
 
         return (
-            <div>
+            <div id="home">
                 <Helmet>
                     <title>Toskov Architects</title>
                     <meta property="og:type" content="article" />
