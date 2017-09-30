@@ -28,7 +28,6 @@ a {
   margin-left: auto;
   margin-right: auto;
   font-size: @font-content;
-  font-weight: 600;
   line-height: 180%;
 
   p {
@@ -57,6 +56,20 @@ a {
     display: flex;
     flex-wrap: wrap;
   }
+}
+
+// Carousel
+.dot {
+  opacity: 1.0 !important;
+  background: white !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+  border: 1.5px solid @light-grey-text !important;
+}
+
+.selected {
+  background: @light-grey-text !important;
 }
 
 // Projects

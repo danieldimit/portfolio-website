@@ -48,9 +48,18 @@ class Footer extends Component {
                                 <div
                                     className="col-lg-12 col-md-12 col-sm-12 col-xs-12 top-pad">
                                     <div id="footer-contact" className="pull-right">
-                                        <img src="img/logos/riba-logo-2l.png"/>
-                                        <img src="img/logos/arb-logo-bl.png"/>
-                                        <img src="img/logos/cab-logo-l.png"/>
+                                        <a href="https://www.architecture.com/"
+                                           target="_blank">
+                                            <img src="img/logos/riba-logo-2l.png"/>
+                                        </a>
+                                        <a href="http://www.arb.org.uk/"
+                                           target="_blank">
+                                            <img src="img/logos/arb-logo-bl.png"/>
+                                        </a>
+                                        <a href="http://kab.bg/"
+                                           target="_blank">
+                                            <img src="img/logos/cab-logo-l.png"/>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

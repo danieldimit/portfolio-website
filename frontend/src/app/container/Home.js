@@ -6,8 +6,9 @@ import { Carousel } from 'react-responsive-carousel';// carousel styles
 import Lightbox from 'react-image-lightbox';
 
 const images = [
-    './img/bim/bim1.jpg',
-    './img/bim/bim2.png'
+    './img/refs/17,5_EN.png',
+    './img/refs/TA_EN.png',
+    './img/refs/Reference_Artistico_EN.jpg'
 ];
 
 class Home extends Component {
@@ -81,30 +82,21 @@ class Home extends Component {
                     dynamicHeight
                     autoPlay interval={3000} infiniteLoop>
                     <div>
-                        <img src="img/hero-images/01_mask.jpg" />
+                        <img src="img/hero-images/newhero.jpg" />
                         <div className="legend">
-                            <h1>Inspiration of Freedom</h1>
+                            <h1>Simple, yet effective</h1>
                             <br/>
                             <div>
-                                There are borders all around us.
-                                Only when you go beyond them you can realise their limits.
+                                Gravel, wood and steel mixed together to create the perfect building.
                             </div>
                         </div>
                     </div>
                     <div>
-                        <img src="img/hero-images/hero4.jpg" />
+                        <img src="img/hero-images/newhero.jpg" />
                         <div className="legend">
                             <h1>Break the Stigma</h1>
                             <br/>
                             <div>Something revolutionary</div>
-                        </div>
-                    </div>
-                    <div>
-                        <img src="img/hero-images/hero2.jpg" />
-                        <div className="legend">
-                            <h1>Create new spaces</h1>
-                            <br/>
-                            <div>Spaces and stuff</div>
                         </div>
                     </div>
                 </Carousel>
@@ -252,7 +244,7 @@ class Home extends Component {
                                     className="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-margin">
                                     <div className="ref-padding-color cursor" id="ref-1"
                                          onClick={() => this.setState({
-                                             photoIndex: 1, isOpen: true })}>
+                                             photoIndex: 0, isOpen: true })}>
                                         <h6 className="exp-type">
                                             ACADEMIC REFERENCE
                                         </h6>
@@ -310,7 +302,7 @@ class Home extends Component {
                                 <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-margin">
                                     <div className="ref-padding-color cursor" id="ref-3"
                                          onClick={() => this.setState({
-                                             photoIndex: 1, isOpen: true })}>
+                                             photoIndex: 2, isOpen: true })}>
                                         <h6 className="exp-type">
                                             PROFESSIONAL REFERENCE
                                         </h6>

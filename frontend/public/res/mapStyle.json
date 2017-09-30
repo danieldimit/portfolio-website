@@ -37,7 +37,10 @@
     "elementType": "geometry.fill",
     "stylers": [
       {
-        "lightness": "-8"
+        "lightness": "-10"
+      },
+      {
+        "saturation": "-100"
       }
     ]
   },
@@ -82,7 +85,7 @@
         "saturation": "-100"
       },
       {
-        "lightness": "5"
+        "lightness": "10"
       }
     ]
   },
@@ -92,6 +95,9 @@
     "stylers": [
       {
         "lightness": "-20"
+      },
+      {
+        "saturation": "-100"
       }
     ]
   },
@@ -103,7 +109,7 @@
         "visibility": "on"
       },
       {
-        "lightness": "5"
+        "lightness": "10"
       },
       {
         "saturation": "-100"
@@ -115,7 +121,10 @@
     "elementType": "geometry.fill",
     "stylers": [
       {
-        "lightness": "-20"
+        "lightness": "-18"
+      },
+      {
+        "saturation": "-100"
       }
     ]
   },
@@ -130,7 +139,7 @@
         "saturation": "-100"
       },
       {
-        "lightness": "5"
+        "lightness": "10"
       }
     ]
   },
@@ -139,7 +148,10 @@
     "elementType": "geometry.fill",
     "stylers": [
       {
-        "lightness": "-20"
+        "lightness": "-18"
+      },
+      {
+        "saturation": "-100"
       }
     ]
   },
@@ -148,10 +160,7 @@
     "elementType": "all",
     "stylers": [
       {
-        "visibility": "on"
-      },
-      {
-        "lightness": "5"
+        "lightness": "10"
       },
       {
         "saturation": "-100"
@@ -163,7 +172,7 @@
     "elementType": "geometry.fill",
     "stylers": [
       {
-        "lightness": "45"
+        "lightness": "-20"
       },
       {
         "saturation": "-100"
@@ -175,94 +184,106 @@
     "elementType": "all",
     "stylers": [
       {
+        "lightness": "10"
+      },
+      {
         "saturation": "-100"
       },
       {
         "visibility": "on"
-      },
-      {
-        "lightness": "5"
       }
     ]
   },
   {
     "featureType": "poi.park",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "lightness": "-18"
+      },
+      {
+        "saturation": "-100"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.place_of_worship",
+    "elementType": "all",
+    "stylers": [
+      {
+        "visibility": "on"
+      },
+      {
+        "lightness": "10"
+      },
+      {
+        "saturation": "-100"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.place_of_worship",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "lightness": "-20"
+      },
+      {
+        "saturation": "-100"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.school",
+    "elementType": "all",
+    "stylers": [
+      {
+        "saturation": "-100"
+      },
+      {
+        "lightness": "10"
+      },
+      {
+        "visibility": "on"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.school",
     "elementType": "geometry.fill",
     "stylers": [
       {
         "lightness": "-15"
+      },
+      {
+        "saturation": "-100"
       }
     ]
   },
   {
-    "featureType": "poi.place_of_worship",
+    "featureType": "poi.sports_complex",
     "elementType": "all",
     "stylers": [
       {
         "visibility": "on"
       },
       {
-        "saturation": "-100"
+        "lightness": "10"
       },
       {
-        "lightness": "5"
+        "saturation": "-100"
       }
     ]
   },
   {
-    "featureType": "poi.place_of_worship",
+    "featureType": "poi.sports_complex",
     "elementType": "geometry.fill",
     "stylers": [
       {
         "lightness": "-20"
-      }
-    ]
-  },
-  {
-    "featureType": "poi.school",
-    "elementType": "all",
-    "stylers": [
-      {
-        "visibility": "on"
       },
       {
         "saturation": "-100"
-      },
-      {
-        "lightness": "5"
-      }
-    ]
-  },
-  {
-    "featureType": "poi.school",
-    "elementType": "geometry.fill",
-    "stylers": [
-      {
-        "lightness": "-12"
-      }
-    ]
-  },
-  {
-    "featureType": "poi.sports_complex",
-    "elementType": "all",
-    "stylers": [
-      {
-        "visibility": "on"
-      },
-      {
-        "saturation": "-100"
-      },
-      {
-        "lightness": "5"
-      }
-    ]
-  },
-  {
-    "featureType": "poi.sports_complex",
-    "elementType": "geometry.fill",
-    "stylers": [
-      {
-        "lightness": "-10"
       }
     ]
   },
@@ -334,7 +355,7 @@
         "color": "#ffffff"
       },
       {
-        "weight": 1.8
+        "weight": "0.75"
       }
     ]
   },
@@ -356,42 +377,6 @@
       },
       {
         "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "transit.line",
-    "elementType": "all",
-    "stylers": [
-      {
-        "visibility": "on"
-      },
-      {
-        "saturation": "-100"
-      },
-      {
-        "lightness": "40"
-      }
-    ]
-  },
-  {
-    "featureType": "transit.station",
-    "elementType": "all",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "water",
-    "elementType": "all",
-    "stylers": [
-      {
-        "visibility": "on"
-      },
-      {
-        "saturation": "-100"
       }
     ]
   },

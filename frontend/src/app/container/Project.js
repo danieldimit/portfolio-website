@@ -21,8 +21,7 @@ class Project extends Component {
                     useKeyboardArrows
                     showStatus={false}
                     showThumbs={false}
-                    dynamicHeight
-                    autoPlay interval={3000} infiniteLoop>
+                    dynamicHeight>
                     <div>
                         <img src="img/about/project.jpg" />
                     </div>
