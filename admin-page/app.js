@@ -5,10 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('express-handlebars');
+var upload = require('express-fileupload');
+var basicAuth = require('express-basic-auth')
 
 var routes = require('./routes/index');
 
 var app = express();
+const AUTH = true;
+
 
 // view engine setup
 app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts/'}));
@@ -22,6 +26,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(upload());
+
+if (AUTH) {
+    app.use(basicAuth({
+        //@lE><t0s|<0V
+        users: { 'admin': 'admin' },
+        challenge: true,
+        realm: 'Imb4T3st4pp'
+    }));
+}
 
 app.use('/', routes);
 
@@ -55,6 +69,8 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+
 
 
 module.exports = app;

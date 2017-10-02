@@ -1,13 +1,21 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 var mongoose = require('mongoose');
+
 mongoose.connect('165.227.144.106:27017/test');
 var Schema = mongoose.Schema;
 
 var userDataSchema = new Schema({
-  title: {type: String, required: true},
-  content: String,
-  author: String
+    title: {type: String, required: true},
+    buildingType: String,
+    content: String,
+    works: String,
+    investor: String,
+    year: String,
+    status: String,
+    tga: String,
+    imgs: [{loc: String}]
 });
 
 var UserData = mongoose.model('UserData', userDataSchema);
@@ -25,14 +33,49 @@ router.get('/get-data', function(req, res, next) {
 });
 
 router.post('/insert', function(req, res, next) {
-  var item = {
-    title: req.body.title,
-    content: req.body.content,
-    author: req.body.author
-  };
+    console.log(req.files);
+    var savePath = [];
 
-  var data = new UserData(item);
-  data.save();
+    var i = 0;
+    for (var key in req.files) {
+        console.log("Key: " + key);
+        console.log("Value: " + req.files[key]);
+
+        if(req.files.upfile0){
+
+            var file = req.files[key];
+            var name = file.name,
+                type = file.mimetype;
+            var uploadpath = './public/uploads/' + name;
+            savePath[i]= {loc:'./uploads/' + name};
+            file.mv(uploadpath,function(err){
+                if(err){
+                    console.log("File Upload Failed",name,err);
+                }
+                else {
+                    console.log("File Uploaded",name);
+                }
+            });
+            i++;
+        };
+
+    }
+
+    var item = new UserData;
+
+    item.title = req.body.title;
+    item.buildingType = req.body.buildingType;
+    item.content = req.body.content;
+    item.works = req.body.works;
+    item.investor = req.body.investor;
+    item.year = req.body.year;
+    item.status = req.body.status;
+    item.tga = req.body.tga;
+
+    item.imgs = savePath;
+    console.log(savePath);
+
+  item.save();
 
   res.redirect('/');
 });
@@ -53,9 +96,23 @@ router.post('/update', function(req, res, next) {
 });
 
 router.post('/delete', function(req, res, next) {
-  var id = req.body.id;
-  UserData.findByIdAndRemove(id).exec();
-  res.redirect('/');
+
+    var id = req.body.id;
+    // Delete photos first
+    UserData.findById(id)
+        .then(function(doc) {
+            console.log(doc.imgs.length);
+            for (var i = 0; i < doc.imgs.length; i++) {
+                fs.unlink("./public/" + doc.imgs[i].loc, (err) => {
+                    if (err) console.log('Error - no such directory!');;
+                    console.log('successfully deleted /tmp/hello');
+                });
+            }
+        });
+    UserData.findByIdAndRemove(id).exec();
+    res.redirect('/');
 });
+
+
 
 module.exports = router;

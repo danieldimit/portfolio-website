@@ -7,6 +7,10 @@ a {
   color: #00B7FF;
 }
 
+#content {
+  height: 300px;
+  width: 280px;
+}
 section {
   float: left;
   background: #bdc3c7;
