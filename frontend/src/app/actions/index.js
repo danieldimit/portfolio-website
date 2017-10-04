@@ -1,70 +1,19 @@
 import axios from 'axios';
 import {
     SET_BREADCRUMB_STATE,
-    FETCH_KEYWORDS,
-    FETCH_KEYWORD_RESULTS,
-    CLEAR_KEYWORD_RESULTS,
-    FETCH_KEYWORD_ARTICLES,
-    FETCH_HASHTAGS,
+    FETCH_PROJECTS,
     FETCH_TWEET_STATS,
-    FETCH_CALCED_GRAPHS
+    FETCH_CALCED_GRAPHS,
 } from './types';
 
-import { backendUrl, googleDocs } from '../config';
+import { backendUrl } from '../config';
 
-export function fetchKeywords() {
-    let request = axios.get(backendUrl + '.json');
-
-    return {
-        type: FETCH_KEYWORDS,
-        payload: request
-    };
-}
-
-export function fetchKeywordResults() {
-    let request;
-    if (typeof window !== 'undefined') {
-        let params = new URL(document.location).searchParams;
-        //let tag = params.get('tag');
-        let tag = 'angelamerkel';
-        request = axios.get(backendUrl + 'db/hashtags/' + tag + '/50');
-    }
+export function fetchProjects() {
+    let request = axios.get(backendUrl + '/projects');
+    console.log("HEHEHEHEHEHc>>>>>>>>> ", request);
 
     return {
-        type: FETCH_KEYWORD_RESULTS,
-        payload: request
-    };
-}
-
-
-export function clearKeywordResults() {
-    return {
-        type: CLEAR_KEYWORD_RESULTS
-    }
-}
-
-export function fetchCalcedGraphs() {
-    const request = axios.get(backendUrl + 'graphs/');
-    return {
-        type: FETCH_CALCED_GRAPHS,
-        payload: request
-    };
-}
-
-export function fetchKeywordArticles() {
-    let request = axios.get('/static-api-req/articles.json');
-
-    return {
-        type: FETCH_KEYWORD_ARTICLES,
-        payload: request
-    };
-}
-
-export function fetchHashtags() {
-    let request = axios.get(googleDocs);
-
-    return {
-        type: FETCH_HASHTAGS,
+        type: FETCH_PROJECTS,
         payload: request
     };
 }
@@ -75,13 +24,27 @@ export function fetchTweetStats(location) {
     if (typeof window !== 'undefined') {
         let params = new URL(document.location).searchParams;
         let id = params.get('id');
-        request = axios.get(backendUrl + 'stats/' + id);
+        request = axios.get('http://165.227.144.106:4000/project?id=' + id);
     }
 
     return {
         type: FETCH_TWEET_STATS,
         payload: request
     };
+}
+
+export function fetchCalcedGraphs() {
+    const request = axios.get('http://165.227.144.106:4000/projects');
+    return {
+        type: FETCH_CALCED_GRAPHS,
+        payload: request
+    };
+}
+
+export function clearKeywordResults() {
+    return {
+        type: CLEAR_KEYWORD_RESULTS
+    }
 }
 
 export function setBreadcrumbState(step) {

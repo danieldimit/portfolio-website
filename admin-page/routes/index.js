@@ -7,6 +7,7 @@ mongoose.connect('165.227.144.106:27017/test');
 var Schema = mongoose.Schema;
 
 var userDataSchema = new Schema({
+    thumbnailLoc: String,
     title: {type: String, required: true},
     buildingType: String,
     content: String,
@@ -18,7 +19,17 @@ var userDataSchema = new Schema({
     imgs: [{loc: String}]
 });
 
+var relevantProjectsSchema = new Schema({relProjIds: [{id: String}]});
+
+var heroImageSchema = new Schema ({
+    title: String,
+    subtitle: String,
+    imgURL: String
+});
+
 var UserData = mongoose.model('UserData', userDataSchema);
+var RelevantProject = mongoose.model('RelevantProject', relevantProjectsSchema);
+var HeroImage = mongoose.model('HeroImage', heroImageSchema);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -32,22 +43,119 @@ router.get('/get-data', function(req, res, next) {
       });
 });
 
+router.get('/get-relevant-projects', function(req, res, next) {
+    RelevantProject.find()
+        .then(function(doc) {
+            res.render('index', doc[0]);
+        });
+});
+
+router.get('/get-hero-images', function(req, res, next) {
+    HeroImage.find()
+        .then(function(doc) {
+            res.render('index', {heroes: doc});
+        });
+});
+
+router.post('/insert-hero-image', function(req, res, next) {
+    var imgPath;
+
+    if(req.files.upHero){
+
+        var file = req.files.upHero;
+        var name = file.name,
+            type = file.mimetype;
+        var uploadpath = '/home/freeserver/website-alex/uploads/imgs/heroes/' + name;
+        imgPath= '/imgs/heroes/' + name;
+        file.mv(uploadpath,function(err){
+            if(err){
+                console.log("File Upload Failed",name,err);
+            }
+            else {
+                console.log("File Uploaded",name);
+            }
+        });
+    };
+
+
+
+    var item = new HeroImage;
+
+    item.imgURL = imgPath;
+    item.title = req.body.title;
+    item.subtitle = req.body.subtitle;
+
+    item.save();
+
+    res.redirect('/get-data');
+});
+
+router.post('/set-relevant-projects', function(req, res, next) {
+    // Remove all relevant projects
+    RelevantProject.remove({}, function(err) {
+            if (err) {
+                console.log(err)
+            } else {
+                // Add the new values
+                var relevantProjectsIds = [];
+
+                var item = new RelevantProject;
+                console.log(req.body.id0);
+                relevantProjectsIds[0] = {id: req.body.id0};
+                relevantProjectsIds[1] = {id: req.body.id1};
+                relevantProjectsIds[2] = {id: req.body.id2};
+                relevantProjectsIds[3] = {id: req.body.id3};
+                relevantProjectsIds[4] = {id: req.body.id4};
+                relevantProjectsIds[5] = {id: req.body.id5};
+                console.log(relevantProjectsIds);
+                item.relProjIds = relevantProjectsIds;
+                console.log("ITEM:::::::::::::::::: ",item.relProjIds);
+                item.save();
+
+                res.redirect('/get-data');
+            }
+        }
+    );
+
+
+});
+
+
 router.post('/insert', function(req, res, next) {
     console.log(req.files);
+    var thumbnailPath;
     var savePath = [];
+
+    if(req.files.thumbnail){
+
+        var file = req.files.thumbnail;
+        var name = file.name,
+            type = file.mimetype;
+        var uploadpath = '/home/freeserver/website-alex/uploads/imgs/thumbnails/' + name;
+        thumbnailPath= '/imgs/thumbnails/' + name;
+        file.mv(uploadpath,function(err){
+            if(err){
+                console.log("File Upload Failed",name,err);
+            }
+            else {
+                console.log("File Uploaded",name);
+            }
+        });
+        i++;
+    };
 
     var i = 0;
     for (var key in req.files) {
         console.log("Key: " + key);
         console.log("Value: " + req.files[key]);
 
-        if(req.files.upfile0){
+        if(key != 'thumbnail' && req.files[key]){
 
             var file = req.files[key];
             var name = file.name,
                 type = file.mimetype;
-            var uploadpath = './public/uploads/' + name;
-            savePath[i]= {loc:'./uploads/' + name};
+            var uploadpath = '/home/freeserver/website-alex/uploads/imgs/' + name;
+            savePath[i]= {loc:'/imgs/' + name};
             file.mv(uploadpath,function(err){
                 if(err){
                     console.log("File Upload Failed",name,err);
@@ -63,6 +171,7 @@ router.post('/insert', function(req, res, next) {
 
     var item = new UserData;
 
+    item.thumbnailLoc = thumbnailPath;
     item.title = req.body.title;
     item.buildingType = req.body.buildingType;
     item.content = req.body.content;
@@ -73,11 +182,10 @@ router.post('/insert', function(req, res, next) {
     item.tga = req.body.tga;
 
     item.imgs = savePath;
-    console.log(savePath);
 
   item.save();
 
-  res.redirect('/');
+  res.redirect('/get-data');
 });
 
 router.post('/update', function(req, res, next) {
@@ -89,10 +197,26 @@ router.post('/update', function(req, res, next) {
     }
     doc.title = req.body.title;
     doc.content = req.body.content;
-    doc.author = req.body.author;
     doc.save();
   })
   res.redirect('/');
+});
+
+
+router.post('/delete-hero-image', function(req, res, next) {
+
+    var id = req.body.id;
+    // Delete photos first
+    HeroImage.findById(id)
+        .then(function(doc) {
+
+            fs.unlink("/home/freeserver/website-alex/uploads/" + doc.imgURL, (err) => {
+                if (err) console.log('Error - no such directory!');
+                console.log('successfully deleted hero image');
+            });
+        });
+    HeroImage.findByIdAndRemove(id).exec();
+    res.redirect('/');
 });
 
 router.post('/delete', function(req, res, next) {
@@ -101,11 +225,16 @@ router.post('/delete', function(req, res, next) {
     // Delete photos first
     UserData.findById(id)
         .then(function(doc) {
-            console.log(doc.imgs.length);
+
+            fs.unlink("/home/freeserver/website-alex/uploads/" + doc.thumbnailLoc, (err) => {
+                if (err) console.log('Error - no such directory!');
+                console.log('successfully deleted thumbnail');
+            });
+
             for (var i = 0; i < doc.imgs.length; i++) {
-                fs.unlink("./public/" + doc.imgs[i].loc, (err) => {
-                    if (err) console.log('Error - no such directory!');;
-                    console.log('successfully deleted /tmp/hello');
+                fs.unlink("/home/freeserver/website-alex/uploads/" + doc.imgs[i].loc, (err) => {
+                    if (err) console.log('Error - no such directory!');
+                    console.log('successfully deleted pic');
                 });
             }
         });

@@ -1,8 +1,8 @@
 import {} from "../actions/index";
 
-import {FETCH_HASHTAGS} from '../actions/types';
+import {FETCH_PROJECTS} from '../actions/types';
 
-const INITIAL_STATE = {HashtagsData: []};
+const INITIAL_STATE = {results: []};
 
 export default function (state, action) {
 
@@ -11,8 +11,7 @@ export default function (state, action) {
     }
 
     switch (action.type) {
-        case FETCH_HASHTAGS:
-
+        case FETCH_PROJECTS:
             return {
                 results: action.payload.data
             };

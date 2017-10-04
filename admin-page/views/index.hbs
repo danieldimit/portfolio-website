@@ -1,7 +1,98 @@
 <h1>Toskov Architect - Admin interface</h1>
 <section class="insert">
+    <h3>Insert Hero Image</h3>
+    <form class="fileupload" action="/insert-hero-image" method="post" enctype="multipart/form-data">
+        <div class="input">
+            <label for="title">Title</label>
+            <input type="text" name="title">
+        </div>
+        <div class="input">
+            <label for="buildingType">Subtitle</label>
+            <input type="text" name="subtitle">
+        </div>
+
+        <p id="imgPanel">Images:
+            <input type="file" name="upHero" value="">
+        </p>
+        <button type="submit">INSERT HERO IMAGE</button>
+    </form>
+</section>
+<section class="get">
+    <h3>Get Hero IMGs</h3>
+    <a href="/get-hero-images">LOAD HERO IMGS</a>
+    <div>
+        {{# each heroes }}
+            <article class="item">
+                <div>Id: {{ this._id }}</div>
+                <div>Title: {{ this.title }}</div>
+                <div>SubTitle: {{ this.subtitle }}</div>
+                <div>Image: <img src="{{ this.imgURL }}" style="width:304px;height:228px;"> </div>
+            </article>
+        {{/each}}
+    </div>
+</section>
+<section class="delete">
+    <h3>Delete Hero Image</h3>
+    <form action="/delete-hero-image" method="post">
+        <div class="input">
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id">
+        </div>
+        <button type="submit">DELETE</button>
+    </form>
+</section>
+
+<section class="insert">
+    <h3>Relevant Projects</h3>
+    <form class="fileupload" action="/set-relevant-projects" method="post" enctype="multipart/form-data">
+
+        <div class="input">
+            <label for="title">ID of project 1 (top left)</label>
+            <input type="text" name="id0">
+        </div>
+        <div class="input">
+            <label for="title">ID of project 2 (top mid)</label>
+            <input type="text" name="id1">
+        </div>
+        <div class="input">
+            <label for="title">ID of project 3 </label>
+            <input type="text" name="id2">
+        </div>
+        <div class="input">
+            <label for="title">ID of project 4 </label>
+            <input type="text" name="id3">
+        </div>
+        <div class="input">
+            <label for="title">ID of project 5 </label>
+            <input type="text" name="id4">
+        </div>
+        <div class="input">
+            <label for="title">ID of project 6 </label>
+            <input type="text" name="id5">
+        </div>
+
+        <button type="submit">SET RELEVANT PROJECTS</button>
+    </form>
+</section>
+<section class="get">
+    <h3>Get Relevant Project IDs</h3>
+    <a href="/get-relevant-projects">LOAD RELEVANT PROJECTS</a>
+    <div>
+        {{# each this.relProjIds }}
+            <article class="item">
+                <div>Id: {{ this.id }}</div>
+            </article>
+        {{/each}}
+    </div>
+</section>
+
+
+<section class="insert">
     <h3>Insert Project</h3>
     <form class="fileupload" action="/insert" method="post" enctype="multipart/form-data">
+        <p id="imgPanel">Thumbnail:
+            <input type="file" name="thumbnail" value="">
+        </p>
         <div class="input">
             <label for="title">Title</label>
             <input type="text" name="title">
@@ -70,6 +161,7 @@
     <div>
         {{# each items }}
             <article class="item">
+                <div>Thumbnail: <img src="{{ this.thumbnailLoc }}" style="width:304px;height:228px;"> </div>
                 <div>Title: {{ this.title }}</div>
                 <div>Building Type: {{ this.buildingType }}</div>
                 <div>Content: {{ this.content }}</div>
@@ -79,7 +171,7 @@
                 <div>Status: {{ this.status }}</div>
                 <div>TGA: {{ this.tga }}</div>
             {{# each this.imgs }}
-                <div>Image: <img src="{{ this.loc }}" style="width:304px;height:228px;"> </div>
+                <div>Images: <img src="{{ this.loc }}" style="width:304px;height:228px;"> </div>
             {{/each}}
                 <div>ID: {{ this._id }}</div>
             </article>
@@ -89,6 +181,9 @@
 <section class="update">
     <h3>Update Project</h3>
     <form action="/update" method="post">
+        <p id="imgPanel">Thumbnail:
+            <input type="file" name="thumbnail" value="">
+        </p>
         <div class="input">
             <label for="title">Title</label>
             <input type="text" name="title">

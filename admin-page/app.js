@@ -38,6 +38,7 @@ if (AUTH) {
 }
 
 app.use('/', routes);
+app.use(express.static('/home/freeserver/website-alex/uploads/'))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

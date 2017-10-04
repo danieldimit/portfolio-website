@@ -1,79 +1,93 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setBreadcrumbState } from '../actions/index';
+
+import { setBreadcrumbState, fetchTweetStats } from '../actions/index';
 
 import { Carousel } from 'react-responsive-carousel';// carousel styles
+import { backendUrl } from '../config';
 
 class Project extends Component {
-    static needs = [setBreadcrumbState];
+    constructor(props) {
+        super(props);
+        this.renderPics = this.renderPics.bind(this)
+    }
 
-    componentWillMount() {
+    componentDidMount() {
+
+        this.props.fetchTweetStats();
         this.props.setBreadcrumbState(3);
     }
 
-    render() {
-        return (
-            <div className="container-content-page project-page">
-                <h1>Sample Project</h1>
+    renderPics(data) {
 
+        if (typeof data !== 'undefined' && data.length > 0) {
+            return (
                 <Carousel
                     showArrows={true}
                     useKeyboardArrows
                     showStatus={false}
                     showThumbs={false}
                     dynamicHeight>
-                    <div>
-                        <img src="img/about/project.jpg" />
-                    </div>
-                    <div>
-                        <img src="img/about/project.jpg" />
-                    </div>
-                    <div>
-                        <img src="img/about/project.jpg" />
-                    </div>
+                    {data.map(function (singleImg) {
+                        return (
+                            <div key={singleImg._id}>
+                                <img src={backendUrl + singleImg.loc} />
+                            </div>
+                        );
+                    })}
                 </Carousel>
+            );
+        }
+    }
 
-                <h5 className="project-building-type"><b>Residential Building</b></h5>
+    render() {
+        return (
+            <div className="container-content-page project-page">
+                <h1>{this.props.tweetStats.title}</h1>
+
+                {this.renderPics(this.props.tweetStats.imgs)}
+                <h5 className="project-building-type"><b>{this.props.tweetStats.buildingType}</b></h5>
                 <hr/>
                 <div>
-                    <p>
-                        The building consists of 16 apartments and semi-underground garage for 18 vehicles.
-                        The first floor is 150 cm above the ground level, which allows the underground parking
-                        places to be opened to the site with no HVAC installations equirements. The planning efficiently
-                        uses the exposures, situating all apartments predominantly without north sides of the building.
-                        To the north are placed all the required auxiliary rooms, storages, the entrance with a
-                        staircase and an elevator.
-                    </p>
-                    <p>
-                        <table>
-                            <tbody id="project-table">
-                                <tr>
-                                    <th>Works</th>
-                                    <td>New Build</td>
-                                </tr>
-                                <tr>
-                                    <th>Investor</th>
-                                    <td>Private</td>
-                                </tr>
-                                <tr>
-                                    <th>Year</th>
-                                    <td>2017</td>
-                                </tr>
-                                <tr>
-                                    <th>Status </th>
-                                    <td>Schematic Design </td>
-                                </tr>
-                                <tr>
-                                    <th>TGA</th>
-                                    <td>3200sq.m.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </p>
+                    {this.props.tweetStats.content}
+                    <table>
+                        <tbody id="project-table">
+                            <tr>
+                                <th>Works</th>
+                                <td>{this.props.tweetStats.works}</td>
+                            </tr>
+                            <tr>
+                                <th>Investor</th>
+                                <td>{this.props.tweetStats.investor}</td>
+                            </tr>
+                            <tr>
+                                <th>Year</th>
+                                <td>{this.props.tweetStats.year}</td>
+                            </tr>
+                            <tr>
+                                <th>Status </th>
+                                <td>{this.props.tweetStats.status}</td>
+                            </tr>
+                            <tr>
+                                <th>TGA</th>
+                                <td>{this.props.tweetStats.tga}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         );
     }
 }
 
-export default connect(null, { setBreadcrumbState })(Project);
+
+function mapStateToProps(state) {
+    return {
+        tweetStats: state.tweetStats.stats
+    };
+}
+
+export default connect(mapStateToProps, {
+    setBreadcrumbState,
+    fetchTweetStats
+})(Project);

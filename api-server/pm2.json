@@ -1,0 +1,12 @@
+
+{
+  "apps": [{
+    "name": "api.toskovarchitects.com",
+    "script": "./index.js",
+    "watch": "true",
+    "ignore_watch" : ["./public/"],
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }]
+}
