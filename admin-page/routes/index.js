@@ -66,15 +66,26 @@ router.post('/insert-hero-image', function(req, res, next) {
         var name = file.name,
             type = file.mimetype;
         var uploadpath = '/home/freeserver/website-alex/uploads/imgs/heroes/' + name;
-        imgPath= '/imgs/heroes/' + name;
-        file.mv(uploadpath,function(err){
-            if(err){
-                console.log("File Upload Failed",name,err);
+        var nameAddition = '';
+        var fileExists = true;
+
+        while (fileExists) {
+            if (fs.existsSync(uploadpath)) {
+                nameAddition = makeid();
+                uploadpath = '/home/freeserver/website-alex/uploads/imgs/heroes/' + nameAddition + name;
+            } else {
+                fileExists = false;
+                imgPath= '/imgs/heroes/' + nameAddition + name;
+                file.mv(uploadpath,function(err){
+                    if(err){
+                        console.log("File Upload Failed",name,err);
+                    }
+                    else {
+                        console.log("File Uploaded",name);
+                    }
+                });
             }
-            else {
-                console.log("File Uploaded",name);
-            }
-        });
+        }
     };
 
 
@@ -132,22 +143,32 @@ router.post('/insert', function(req, res, next) {
         var name = file.name,
             type = file.mimetype;
         var uploadpath = '/home/freeserver/website-alex/uploads/imgs/thumbnails/' + name;
-        thumbnailPath= '/imgs/thumbnails/' + name;
-        file.mv(uploadpath,function(err){
-            if(err){
-                console.log("File Upload Failed",name,err);
+        var nameAddition = '';
+        var fileExists = true;
+
+        while (fileExists) {
+            if (fs.existsSync(uploadpath)) {
+                nameAddition = makeid();
+                uploadpath = '/home/freeserver/website-alex/uploads/imgs/thumbnails/' + nameAddition + name;
+            } else {
+                fileExists = false;
+                uploadpath = '/home/freeserver/website-alex/uploads/imgs/thumbnails/' + nameAddition + name;
+                thumbnailPath= '/imgs/thumbnails/' + nameAddition + name;
+                console.log(thumbnailPath);
+                file.mv(uploadpath,function(err){
+                    if(err){
+                        console.log("File Upload Failed",name,err);
+                    }
+                    else {
+                        console.log("File Uploaded",name);
+                    }
+                });
             }
-            else {
-                console.log("File Uploaded",name);
-            }
-        });
-        i++;
+        }
     };
 
     var i = 0;
     for (var key in req.files) {
-        console.log("Key: " + key);
-        console.log("Value: " + req.files[key]);
 
         if(key != 'thumbnail' && req.files[key]){
 
@@ -155,16 +176,32 @@ router.post('/insert', function(req, res, next) {
             var name = file.name,
                 type = file.mimetype;
             var uploadpath = '/home/freeserver/website-alex/uploads/imgs/' + name;
-            savePath[i]= {loc:'/imgs/' + name};
-            file.mv(uploadpath,function(err){
-                if(err){
-                    console.log("File Upload Failed",name,err);
+
+            nameAddition = '';
+            fileExists = true;
+
+
+            while (fileExists) {
+                console.log("stuck>>>>>>>, uploadpath ", uploadpath);
+                if (fs.existsSync(uploadpath)) {
+                    nameAddition = makeid();
+                    uploadpath = '/home/freeserver/website-alex/uploads/imgs/' + nameAddition + name;
+                } else {
+                    fileExists = false;
+                    uploadpath = '/home/freeserver/website-alex/uploads/imgs/' + nameAddition + name;
+                    savePath[i]= {loc: '/imgs/' + nameAddition + name};
+                    file.mv(uploadpath, function(err){
+                        if(err){
+                            console.log("File Upload Failed", name, err);
+                        }
+                        else {
+                            console.log("File Uploaded", name);
+                        }
+                    });
+                    i++;
                 }
-                else {
-                    console.log("File Uploaded",name);
-                }
-            });
-            i++;
+            }
+
         };
 
     }
@@ -183,9 +220,10 @@ router.post('/insert', function(req, res, next) {
 
     item.imgs = savePath;
 
-  item.save();
+    item.save();
 
-  res.redirect('/get-data');
+    res.redirect('/get-data');
+
 });
 
 router.post('/update', function(req, res, next) {
@@ -201,6 +239,16 @@ router.post('/update', function(req, res, next) {
   })
   res.redirect('/');
 });
+
+function makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 5; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
 
 
 router.post('/delete-hero-image', function(req, res, next) {
