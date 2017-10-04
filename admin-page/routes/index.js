@@ -101,12 +101,12 @@ router.post('/set-relevant-projects', function(req, res, next) {
 
                 var item = new RelevantProject;
                 console.log(req.body.id0);
-                relevantProjectsIds[0] = {id: req.body.id0};
-                relevantProjectsIds[1] = {id: req.body.id1};
-                relevantProjectsIds[2] = {id: req.body.id2};
-                relevantProjectsIds[3] = {id: req.body.id3};
-                relevantProjectsIds[4] = {id: req.body.id4};
-                relevantProjectsIds[5] = {id: req.body.id5};
+                relevantProjectsIds[0] = {id: (req.body.id0)};
+                relevantProjectsIds[1] = {id: (req.body.id1)};
+                relevantProjectsIds[2] = {id: (req.body.id2)};
+                relevantProjectsIds[3] = {id: (req.body.id3)};
+                relevantProjectsIds[4] = {id: (req.body.id4)};
+                relevantProjectsIds[5] = {id: (req.body.id5)};
                 console.log(relevantProjectsIds);
                 item.relProjIds = relevantProjectsIds;
                 console.log("ITEM:::::::::::::::::: ",item.relProjIds);

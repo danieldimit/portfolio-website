@@ -5,6 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+var async = require('async');
 const app = express();
 
 //load env vars if .env exists
@@ -50,13 +51,79 @@ const UserData = db.model(
     })
 );
 
+const RelevantProject = db.model(
+    'RelevantProject',
+    new Schema({relProjIds: [{id: String}]})
+);
+
+const HeroImage = db.model(
+    'HeroImage',
+    new Schema ({
+        title: String,
+        subtitle: String,
+        imgURL: String
+    })
+);
+
 //use cors
 app.use(cors());
 
 //set static folder
 app.use(express.static('/home/freeserver/website-alex/uploads/'));
 
+
+
 //routes
+app.get('/relevant-projects', function(req, res) {
+    res.header('Access-Control-Allow-Origin', req.get('Origin') || '*');
+
+    RelevantProject.find({})
+        .then(function(doc) {
+            var idArr = [];
+
+            for (var i = 0; i < doc[0].relProjIds.length; i++) {
+                idArr[i] = doc[0].relProjIds[i].id;
+            }
+
+            async.map(idArr, getThumbnailByID, function(err, results) {
+                var returned = [];
+                var item;
+                for (item of results) {
+                    if (typeof item !== 'undefined') {
+                        returned.push(item);
+                    }
+                }
+                res.json(returned);
+            });
+
+
+        });
+});
+
+function getThumbnailByID(id, callback) {
+    UserData.find({_id: id}, {thumbnailLoc: 1, buildingType: 1, title: 1}, function(err, doc) {
+        if(typeof doc === 'undefined' || err){
+            callback(null);
+        } else {
+            if (doc.length === 0) {
+                callback(null);
+            } else {
+                callback(null, doc[0]);
+            }
+
+        }
+    });
+}
+
+app.get('/heroes', function(req, res) {
+    res.header('Access-Control-Allow-Origin', req.get('Origin') || '*');
+
+    HeroImage.find({})
+        .then(function(doc) {
+            res.json(doc);
+        });
+});
+
 app.get('/projects', function(req, res) {
     res.header('Access-Control-Allow-Origin', req.get('Origin') || '*');
 
