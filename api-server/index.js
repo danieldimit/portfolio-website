@@ -36,11 +36,13 @@ db.once('open', function() {
 });
 
 //get the tweets collection
-const UserData = db.model(
-    'UserData',
+const Project = db.model(
+    'Project',
     new Schema({
+        thumbnailLoc: String,
         title: {type: String, required: true},
         buildingType: String,
+        template: String,
         content: String,
         works: String,
         investor: String,
@@ -101,7 +103,7 @@ app.get('/relevant-projects', function(req, res) {
 });
 
 function getThumbnailByID(id, callback) {
-    UserData.find({_id: id}, {thumbnailLoc: 1, buildingType: 1, title: 1}, function(err, doc) {
+    Project.find({_id: id}, {thumbnailLoc: 1, buildingType: 1, title: 1}, function(err, doc) {
         if(typeof doc === 'undefined' || err){
             callback(null);
         } else {
@@ -127,7 +129,7 @@ app.get('/heroes', function(req, res) {
 app.get('/projects', function(req, res) {
     res.header('Access-Control-Allow-Origin', req.get('Origin') || '*');
 
-    UserData.find({}, {thumbnailLoc: 1, buildingType: 1, title: 1})
+    Project.find({}, {thumbnailLoc: 1, buildingType: 1, title: 1})
         .then(function(doc) {
             res.json(doc);
         });
@@ -136,7 +138,7 @@ app.get('/projects', function(req, res) {
 app.get('/project', function(req, res) {
     res.header('Access-Control-Allow-Origin', req.get('Origin') || '*');
     console.log(req.query.id);
-    UserData.find({_id: req.query.id})
+    Project.find({_id: req.query.id})
         .then(function(doc) {
             res.json(doc[0]);
         });

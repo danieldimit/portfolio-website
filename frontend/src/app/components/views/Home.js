@@ -3,7 +3,7 @@ import {Helmet} from "react-helmet";
 
 import Header from '../Header';
 import Breadcrumb from '../../container/Breadcrumb';
-import Home from '../../container/Home';
+import Home from '../Home';
 import Footer from '../Footer';
 
 class HomeView extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Helmet} from "react-helmet";
-import Projects from '../Projects';
+import Projects from '../../container/Projects';
 
 import Header from '../Header';
 import Footer from '../Footer';

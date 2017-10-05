@@ -102,6 +102,10 @@
             <input type="text" name="buildingType">
         </div>
         <div class="input">
+            <label for="buildingType">Template type: can take values 'h' for horizontal img or 'v' for vertical image</label>
+            <input type="text" name="template">
+        </div>
+        <div class="input">
             <label for="content">Content</label>
             <textarea type="text" id="content" name="content"></textarea>
         </div>
@@ -164,6 +168,7 @@
                 <div>Thumbnail: <img src="{{ this.thumbnailLoc }}" style="width:304px;height:228px;"> </div>
                 <div>Title: {{ this.title }}</div>
                 <div>Building Type: {{ this.buildingType }}</div>
+                <div>Template: {{ this.template }}</div>
                 <div>Content: {{ this.content }}</div>
                 <div>Works: {{ this.works }}</div>
                 <div>Investor: {{ this.investor }}</div>

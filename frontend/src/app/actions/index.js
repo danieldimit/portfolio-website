@@ -4,19 +4,11 @@ import {
     FETCH_PROJECTS,
     FETCH_TWEET_STATS,
     FETCH_CALCED_GRAPHS,
+    FETCH_HEROES,
+    FETCH_RELEVANT_PROJECTS
 } from './types';
 
 import { backendUrl } from '../config';
-
-export function fetchProjects() {
-    let request = axios.get(backendUrl + '/projects');
-    console.log("HEHEHEHEHEHc>>>>>>>>> ", request);
-
-    return {
-        type: FETCH_PROJECTS,
-        payload: request
-    };
-}
 
 export function fetchTweetStats(location) {
     let request;
@@ -24,7 +16,7 @@ export function fetchTweetStats(location) {
     if (typeof window !== 'undefined') {
         let params = new URL(document.location).searchParams;
         let id = params.get('id');
-        request = axios.get('http://165.227.144.106:4000/project?id=' + id);
+        request = axios.get(backendUrl + '/project?id=' + id);
     }
 
     return {
@@ -33,10 +25,27 @@ export function fetchTweetStats(location) {
     };
 }
 
+
+export function fetchHeroes() {
+    const request = axios.get(backendUrl + '/heroes');
+    return {
+        type: FETCH_HEROES,
+        payload: request
+    };
+}
+
 export function fetchCalcedGraphs() {
-    const request = axios.get('http://165.227.144.106:4000/projects');
+    const request = axios.get(backendUrl + '/projects');
     return {
         type: FETCH_CALCED_GRAPHS,
+        payload: request
+    };
+}
+
+export function fetchRelevantProjects() {
+    const request = axios.get(backendUrl + '/relevant-projects');
+    return {
+        type: FETCH_RELEVANT_PROJECTS,
         payload: request
     };
 }
@@ -47,7 +56,7 @@ export function clearKeywordResults() {
     }
 }
 
-export function setBreadcrumbState(step) {
+export function setMenuState(step) {
     let tip;
     switch (step) {
         case 1:

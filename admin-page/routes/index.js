@@ -3,13 +3,14 @@ var router = express.Router();
 var fs = require('fs');
 var mongoose = require('mongoose');
 
-mongoose.connect('165.227.144.106:27017/test');
+mongoose.connect('127.0.0.1:27017/test');
 var Schema = mongoose.Schema;
 
-var userDataSchema = new Schema({
+var projectSchema = new Schema({
     thumbnailLoc: String,
     title: {type: String, required: true},
     buildingType: String,
+    template: String,
     content: String,
     works: String,
     investor: String,
@@ -27,7 +28,7 @@ var heroImageSchema = new Schema ({
     imgURL: String
 });
 
-var UserData = mongoose.model('UserData', userDataSchema);
+var Project = mongoose.model('Project', projectSchema);
 var RelevantProject = mongoose.model('RelevantProject', relevantProjectsSchema);
 var HeroImage = mongoose.model('HeroImage', heroImageSchema);
 
@@ -37,7 +38,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/get-data', function(req, res, next) {
-  UserData.find()
+    Project.find()
       .then(function(doc) {
         res.render('index', {items: doc});
       });
@@ -206,11 +207,12 @@ router.post('/insert', function(req, res, next) {
 
     }
 
-    var item = new UserData;
+    var item = new Project;
 
     item.thumbnailLoc = thumbnailPath;
     item.title = req.body.title;
     item.buildingType = req.body.buildingType;
+    item.template = req.body.template;
     item.content = req.body.content;
     item.works = req.body.works;
     item.investor = req.body.investor;
@@ -229,7 +231,7 @@ router.post('/insert', function(req, res, next) {
 router.post('/update', function(req, res, next) {
   var id = req.body.id;
 
-  UserData.findById(id, function(err, doc) {
+    Project.findById(id, function(err, doc) {
     if (err) {
       console.error('error, no entry found');
     }
@@ -271,7 +273,7 @@ router.post('/delete', function(req, res, next) {
 
     var id = req.body.id;
     // Delete photos first
-    UserData.findById(id)
+    Project.findById(id)
         .then(function(doc) {
 
             fs.unlink("/home/freeserver/website-alex/uploads/" + doc.thumbnailLoc, (err) => {
@@ -286,7 +288,7 @@ router.post('/delete', function(req, res, next) {
                 });
             }
         });
-    UserData.findByIdAndRemove(id).exec();
+    Project.findByIdAndRemove(id).exec();
     res.redirect('/');
 });
 
