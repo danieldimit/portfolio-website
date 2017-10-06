@@ -17,6 +17,11 @@
     position: fixed;
     z-index: 100;
 
+    .navbar-header {
+        width: 100%;
+        margin-left: 0 !important;
+    }
+
     #menu-items-container {
         font-wegith: 600;
         font-size: 75%;
@@ -63,29 +68,28 @@ nav {
     }
 
     #burger-btn {
-        border-radius: 5px;
+        border: none;
         vertical-align: center;
         height: 40px;
         width: 40px;
 
+        &:hover {
+            background: none;
+
+            .icon-bar {
+                background: @text-black;
+            }
+        }
+
+        &:focus {
+            background: none;
+        }
+
         .icon-bar {
             background: @text-grey;
             height: @burger-menu-bar-size;
-            width: 16px;
+            width: 28px;
         }
-    }
-
-    #burger-btn:hover {
-        border: 2px solid @text-black;
-        background: @text-black;
-
-        .icon-bar {
-            background: white;
-        }
-    }
-
-    #burger-btn:focus {
-        background: none;
     }
 
     #menu-items-container {

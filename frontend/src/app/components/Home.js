@@ -228,7 +228,7 @@ class Home extends Component {
 
                     <div className="container-content-page">
                         <div className="row equal-length-fix">
-                            <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div id="tutor-image" className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <img src="img/about/tutor.jpg"/>
                             </div>
                             <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
