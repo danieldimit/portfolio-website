@@ -53,8 +53,8 @@ class Projects extends Component {
         return {"currentBuildingType":"all"};
     }
 
-    toggleSidenav() {
-        console.log("HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+    handleSort(aha) {
+        console.log(aha);
     }
 
     render() {
@@ -65,10 +65,10 @@ class Projects extends Component {
                     <h1>Projects</h1>
                     <hr />
                     <ul id="radio-btn-category" className="text-cap">
-                        <li onClick={this.toggleSidenav.bind(this)}>all</li>
-                        <li>residential</li>
-                        <li>workplace</li>
-                        <li>mixed</li>
+                        <li onClick={() => this.handleSort("all")}>all</li>
+                        <li onClick={() => this.handleSort("residential")}>residential</li>
+                        <li onClick={() => this.handleSort("workplace")}>workplace</li>
+                        <li onClick={() => this.handleSort("mixed")}>mixed</li>
                     </ul>
                 </div>
                 <div className="row grid-projects projects-container">

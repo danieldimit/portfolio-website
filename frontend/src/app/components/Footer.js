@@ -1,20 +1,41 @@
 import React, { Component } from 'react';
 
 class Footer extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            scrollTop: 0
+        };
+    }
+
     componentDidMount() {
-        const script = document.createElement("script");
+        window.addEventListener('scroll', this.handleScroll);
+    }
 
-        script.src = "js/back-to-top-script.js";
-        script.async = true;
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
 
-        document.body.appendChild(script);
+    handleScroll() {
+        this.state = {
+            scrollTop: ($(window).scrollTop())
+        };
+    }
+
+    scrollToTop() {
+        $('body,html').animate({scrollTop: 0}, 800);
     }
 
     render() {
+        if (this.state.scrollTop < this.props.offset) {
+            return null;
+        }
+
         return (
             <div>
                 <div id="footer-white-background">
-                    <div id="back-to-top-btn"><span></span>Back to top</div>
+                    <div id="back-to-top-btn" onClick={this.scrollToTop}><span></span>Back to top</div>
                 </div>
 
                 <footer>

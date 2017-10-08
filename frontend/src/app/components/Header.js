@@ -47,22 +47,23 @@ class Header extends Component {
                                 onClick={() => browserHistory.push('/bim')}>
                                 BIM
                             </NavItem>
-                            <a className="nav-bar-icons"
-                               href="https://www.linkedin.com/in/aleksandartoskov/"
-                               target="_blank">
-                                <i className="fa fa-linkedin-square fa-lg" aria-hidden="true"/>
-                            </a>
-                            <a className=" nav-bar-icons"
-                               href="https://twitter.com/"
-                               target="_blank">
-                                <i className="fa fa-twitter-square fa-lg" aria-hidden="true"/>
-                            </a>
-                            <a className=" nav-bar-icons"
-                               href="https://www.facebook.com/"
-                               target="_blank">
-                                <i className="fa fa-facebook-square fa-lg" aria-hidden="true"/>
-                            </a>
-
+                            <li>
+                                <a className="nav-bar-icons"
+                                   href="https://www.linkedin.com/in/aleksandartoskov/"
+                                   target="_blank">
+                                    <i className="fa fa-linkedin-square fa-lg" aria-hidden="true"/>
+                                </a>
+                                <a className=" nav-bar-icons"
+                                   href="https://twitter.com/"
+                                   target="_blank">
+                                    <i className="fa fa-twitter-square fa-lg" aria-hidden="true"/>
+                                </a>
+                                <a className=" nav-bar-icons"
+                                   href="https://www.facebook.com/"
+                                   target="_blank">
+                                    <i className="fa fa-facebook-square fa-lg" aria-hidden="true"/>
+                                </a>
+                            </li>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

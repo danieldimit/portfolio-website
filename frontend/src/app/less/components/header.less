@@ -31,10 +31,16 @@
 
 nav {
 
+    li {
+        margin-right: 21px;
+        text-align: right;
+
+        a {
+            display: inline !important;
+        }
+    }
+
     .container {
-        width: 100%;
-        display: table;
-        height: auto;
 
         .navbar-header {
             float: left;
@@ -100,6 +106,12 @@ nav {
     }
 
     @media (min-width: 768px) {
+
+        .container {
+            width: 100%;
+            display: table;
+            height: auto;
+        }
 
         #menu-items-container {
             display: table-cell !important;

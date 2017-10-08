@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { setBreadcrumbState, fetchTweetStats } from '../actions/index';
+import { fetchTweetStats } from '../actions/index';
 
 import { Carousel } from 'react-responsive-carousel';// carousel styles
 import { backendUrl } from '../config';
@@ -13,9 +13,7 @@ class Project extends Component {
     }
 
     componentDidMount() {
-
         this.props.fetchTweetStats();
-        this.props.setBreadcrumbState(3);
     }
 
     renderPics(data) {
@@ -49,7 +47,9 @@ class Project extends Component {
                 <h5 className="project-building-type"><b>{this.props.tweetStats.buildingType}</b></h5>
                 <hr/>
                 <div>
-                    {this.props.tweetStats.content}
+                    <div id="project-text">
+                        {this.props.tweetStats.content}
+                    </div>
                     <table>
                         <tbody id="project-table">
                             <tr>
@@ -88,6 +88,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-    setBreadcrumbState,
     fetchTweetStats
 })(Project);
