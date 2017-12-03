@@ -38,18 +38,35 @@ class Project extends Component {
         }
     }
 
+    renderParagraph(data) {
+        var temp = data.trim();
+        return (
+            <p>{temp}</p>
+        );
+    }
+
+    renderParagraphs(data) {
+        if (typeof data !== 'undefined') {
+            var paragraphs = data.split("<p>");
+            return (
+                <div id="project-text">
+                    {paragraphs.map(this.renderParagraph)}
+                </div>
+            );
+        }
+    }
+
     render() {
         return (
             <div className="container-content-page project-page">
                 <h1>{this.props.tweetStats.title}</h1>
 
                 {this.renderPics(this.props.tweetStats.imgs)}
+
                 <h5 className="project-building-type"><b>{this.props.tweetStats.buildingType}</b></h5>
                 <hr/>
                 <div>
-                    <div id="project-text">
-                        {this.props.tweetStats.content}
-                    </div>
+                    {this.renderParagraphs(this.props.tweetStats.content)}
                     <table>
                         <tbody id="project-table">
                             <tr>

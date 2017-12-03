@@ -15,8 +15,10 @@ export function fetchTweetStats(location) {
     let id;
     if (typeof window !== 'undefined') {
         let params = new URL(document.location).searchParams;
-        let id = params.get('id');
-        request = axios.get(backendUrl + '/project?id=' + id);
+        if (typeof params !== 'undefined') {
+            let id = params.get('id');
+            request = axios.get(backendUrl + '/project?id=' + id);
+        }
     }
 
     return {

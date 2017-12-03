@@ -25,12 +25,6 @@ class Home extends Component {
     }
 
     render() {
-        let tag = '';
-        if (typeof window !== 'undefined') {
-            let params = new URL(document.location).searchParams;
-            tag = params.get('tag');
-        }
-
         const {
             photoIndex,
             isOpen,

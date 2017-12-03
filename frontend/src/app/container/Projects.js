@@ -13,6 +13,10 @@ class Projects extends Component {
     constructor(props) {
         super(props);
         this.renderProjectGrid = this.renderProjectGrid.bind(this);
+        this.state = {
+            selected : '',
+            filter: ''
+        }
     }
 
 
@@ -21,6 +25,22 @@ class Projects extends Component {
     componentDidMount() {
 
         this.props.fetchCalcedGraphs();
+    }
+
+    //
+    setFilter(filter) {
+        this.state = {selected  : filter};
+        this.props.onChangeFilter(filter);
+    }
+    isActive(value){
+        return 'btn '+((value===this.state.selected) ?'active':'default');
+    }
+
+    // Other
+        changeFilter(filter) {
+        this.state = {
+            filter: filter
+        };
     }
 
     renderProjectGrid(data) {
@@ -49,10 +69,6 @@ class Projects extends Component {
 
 
 
-    getInitialState(){
-        return {"currentBuildingType":"all"};
-    }
-
     handleSort(aha) {
         console.log(aha);
     }
@@ -64,6 +80,11 @@ class Projects extends Component {
                 <div className="container-content-page projects-header-filter">
                     <h1>Projects</h1>
                     <hr />
+                    <button className={this.isActive('')} onClick={this.setFilter.bind(this, '')}>All</button>
+                    <button className={this.isActive('male')} onClick={this.setFilter.bind(this, 'male')}>male</button>
+                    <button className={this.isActive('female')} onClick={this.setFilter.bind(this, 'female')}>female</button>
+                    <button className={this.isActive('child')} onClick={this.setFilter.bind(this, 'child')}>child</button>
+                    <button className={this.isActive('blonde')} onClick={this.setFilter.bind(this, 'blonde')}>blonde</button>
                     <ul id="radio-btn-category" className="text-cap">
                         <li onClick={() => this.handleSort("all")}>all</li>
                         <li onClick={() => this.handleSort("residential")}>residential</li>

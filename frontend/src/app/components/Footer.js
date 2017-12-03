@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
+var $ = require ('jquery');
+
 class Footer extends Component {
+
 
     constructor(props) {
         super(props);
@@ -9,8 +12,13 @@ class Footer extends Component {
         };
     }
 
+
+
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll);
+        if ($ !== 'undefined') {
+            $('body,html').scrollTop(0, 800);
+        }
     }
 
     componentWillUnmount() {
@@ -26,6 +34,8 @@ class Footer extends Component {
     scrollToTop() {
         $('body,html').animate({scrollTop: 0}, 800);
     }
+
+
 
     render() {
         if (this.state.scrollTop < this.props.offset) {
