@@ -1,6 +1,6 @@
 # Simple Portfolio Website - frontend
 
-This is the frontend of the fakenewsgraph.de webservice.
+This is the frontend of the simple portfolio website. To connect to the backend change its address in the following file: `frontend/src/app/config.js`
 
 ## Installing / Getting started
 
