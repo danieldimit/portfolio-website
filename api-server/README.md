@@ -1,6 +1,6 @@
-# fakenewsgraph.de - API Server
+# Simple Portfolio Website - API Server
 
-This server takes the collected tweets from the MongoDB and creates optimized JSON files for the frontend.
+This server provides passive API, which is used by the frontend to fetch the needed infos.
 
 ## Installing / Getting started
 
