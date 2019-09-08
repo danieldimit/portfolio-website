@@ -1,4 +1,4 @@
-# fakenewsgraph.de - frontend
+# Simple Portfolio Website - frontend
 
 This is the frontend of the fakenewsgraph.de webservice.
 
