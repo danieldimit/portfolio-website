@@ -1,1 +1,1 @@
-export const backendUrl = 'http://165.227.144.106:4000';
+export const backendUrl = 'put_the_ip_and_port_of_your_website_here';
